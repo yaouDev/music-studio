@@ -12,9 +12,34 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+
+        /* Fun, animated gradient background */
+        .animated-gradient-bg {
+            background: linear-gradient(-45deg, #f7fafc, #edf2f7, #cbd5e0, #a0aec0);
+            background-size: 400% 400%;
+            animation: gradient-flow 15s ease infinite;
+        }
+
+        .dark .animated-gradient-bg {
+            background: linear-gradient(-45deg, #1f2937, #111827, #374151, #4b5563);
+            background-size: 400% 400%;
+            animation: gradient-flow 15s ease infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+<body class="animated-gradient-bg text-gray-800 dark:text-gray-200">
     <!-- Header/Navigation Bar -->
     <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -43,7 +68,7 @@
     </section>
 
     <!-- Portfolio Section (Dynamic) -->
-    <section id="portfolio" class="py-16 bg-gray-200 dark:bg-gray-800">
+    <section id="portfolio" class="py-16">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white">My Projects</h2>
             <div id="portfolio-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -65,8 +90,29 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4 max-w-xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">Get In Touch</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
+                Have a question or want to collaborate? Send me a message!
+            </p>
+            <!-- Using a mailto: link to simulate a contact form -->
+            <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+                <div class="space-y-4">
+                    <input type="text" name="name" placeholder="Your Name" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors">
+                    <input type="email" name="email" placeholder="Your Email" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors">
+                    <textarea name="message" placeholder="Your Message" rows="5" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"></textarea>
+                </div>
+                <button type="submit" class="mt-6 w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+    
     <!-- Footer -->
-    <footer id="contact" class="bg-gray-800 dark:bg-gray-900 text-gray-400 py-6 text-center">
+    <footer class="bg-gray-800 dark:bg-gray-900 text-gray-400 py-6 text-center">
         <div class="container mx-auto px-4">
             <p>&copy; 2024 Your Name. Built with curiosity and code.</p>
         </div>
