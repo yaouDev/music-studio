@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <!-- Header/Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-gray-900 dark:text-white">Your Name</a>
+            <div class="space-x-4 hidden md:flex">
+                <a href="#portfolio" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">Portfolio</a>
+                <a href="#about" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">About</a>
+                <a href="#contact" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="py-16 md:py-24 text-center">
+        <div class="container mx-auto px-4">
+            <h1 id="hero-title" class="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-4">
+                Creative Portfolio
+            </h1>
+            <p id="hero-description" class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+                Welcome to my portfolio! Here you'll find a collection of my projects, including cool videos, audio clips, and more.
+            </p>
+            <a href="#portfolio" class="inline-block py-3 px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                See My Work
+            </a>
+        </div>
+    </section>
+
+    <!-- Portfolio Section (Dynamic) -->
+    <section id="portfolio" class="py-16 bg-gray-200 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white">My Projects</h2>
+            <div id="portfolio-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project cards will be injected here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 text-center">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 id="about-title" class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">About Me</h2>
+            <p id="about-description" class="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                Hi there! My name is [Your Name], and I'm passionate about [Your Interests, e.g., coding, art, music]. This site showcases some of my favorite projects and creations. I love learning new things and bringing ideas to life!
+            </p>
+            <a href="#" class="mt-6 inline-block text-indigo-600 hover:underline dark:text-indigo-400 transition-colors">
+                Learn more about my journey
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-800 dark:bg-gray-900 text-gray-400 py-6 text-center">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2024 Your Name. Built with curiosity and code.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const portfolioContainer = document.getElementById('portfolio-container');
+            const heroTitle = document.getElementById('hero-title');
+            const heroDescription = document.getElementById('hero-description');
+            const aboutTitle = document.getElementById('about-title');
+            const aboutDescription = document.getElementById('about-description');
+
+            // Define the HTML for a single project card using a template literal
+            const createProjectCard = (project) => {
+                let mediaHtml = '';
+                if (project.type === 'video') {
+                    mediaHtml = `
+                        <div class="aspect-video w-full">
+                            <video controls class="w-full h-full object-cover rounded-t-xl">
+                                <source src="${project.media_url}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>`;
+                } else if (project.type === 'audio') {
+                    mediaHtml = `
+                        <div class="p-6">
+                            <audio controls class="w-full">
+                                <source src="${project.media_url}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>`;
+                } else if (project.type === 'image') {
+                    mediaHtml = `
+                        <img src="${project.media_url}" alt="${project.title}" class="w-full h-auto object-cover rounded-t-xl">
+                    `;
+                }
+
+                return `
+                    <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+                        ${mediaHtml}
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">${project.title}</h3>
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                                ${project.description}
+                            </p>
+                        </div>
+                    </div>
+                `;
+            };
+
+            // Fetch all JSON data concurrently
+            try {
+                const [projectsRes, heroRes, aboutRes] = await Promise.all([
+                    fetch('projects.json'),
+                    fetch('hero.json'),
+                    fetch('about.json')
+                ]);
+
+                const projects = await projectsRes.json();
+                const hero = await heroRes.json();
+                const about = await aboutRes.json();
+
+                // Populate Hero section with fetched data
+                heroTitle.textContent = hero.title;
+                heroDescription.textContent = hero.description;
+
+                // Populate About section with fetched data
+                aboutTitle.textContent = about.title;
+                aboutDescription.textContent = about.description;
+
+                // Populate Projects section with fetched data
+                projects.forEach(project => {
+                    const projectCardHtml = createProjectCard(project);
+                    portfolioContainer.innerHTML += projectCardHtml;
+                });
+
+            } catch (e) {
+                console.error('There was a problem fetching a file:', e);
+                heroTitle.textContent = 'Error Loading';
+                heroDescription.textContent = 'There was an issue fetching the portfolio data. Please check your files.';
+                portfolioContainer.innerHTML = '<p class="text-center text-red-500">Could not load projects. Please check the projects.json file.</p>';
+                aboutTitle.textContent = 'Error Loading';
+                aboutDescription.textContent = 'There was an issue fetching the about data.';
+            }
+        });
+    </script>
+</body>
+</html>

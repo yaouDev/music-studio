@@ -1,0 +1,20 @@
+[
+{
+"title": "My First Video Project",
+"description": "This is a brief description of my first video project. It could be a short film, a school assignment, or an animation.",
+"type": "video",
+"media_url": "https://www.google.com/search?q=https://www.w3schools.com/html/mov_bbb.mp4"
+},
+{
+"title": "A Musical Creation",
+"description": "This is an audio clip, perhaps a song I wrote, a sound design piece, or a short podcast.",
+"type": "audio",
+"media_url": "https://www.google.com/search?q=https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+},
+{
+"title": "My Painting",
+"description": "An example of a painting or a drawing that I've created.",
+"type": "image",
+"media_url": "https://www.google.com/search?q=https://placehold.co/600x400/000000/FFFFFF%3Ftext%3DProject%2BImage"
+}
+]
