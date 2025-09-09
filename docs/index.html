@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        #background-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A creative portfolio showcasing my work and skills." />
+  <meta property="og:title" content="Creative Portfolio" />
+  <meta property="og:description" content="Check out my projects, skills, and contact information." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="your-image-url.jpg" />
+
+  <title id="site-title">Dynamic Portfolio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Styles -->
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    #background-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
 </head>
+
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
     <!-- 3D Animated Background Canvas -->
     <canvas id="background-canvas"></canvas>
@@ -179,85 +194,70 @@
 
 
         document.addEventListener('DOMContentLoaded', async () => {
-            const portfolioContainer = document.getElementById('portfolio-container');
-            const heroTitle = document.getElementById('hero-title');
-            const heroDescription = document.getElementById('hero-description');
-            const aboutTitle = document.getElementById('about-title');
-            const aboutDescription = document.getElementById('about-description');
+    const heroTitle = document.getElementById('hero-title');
+    const heroDescription = document.getElementById('hero-description');
+    const aboutTitle = document.getElementById('about-title');
+    const aboutDescription = document.getElementById('about-description');
+    const portfolioContainer = document.getElementById('portfolio-container');
+    const siteTitle = document.getElementById('site-title');
+    const navName = document.querySelector('header nav a');
 
-            // Define the HTML for a single project card using a template literal
-            const createProjectCard = (project) => {
-                let mediaHtml = '';
-                if (project.type === 'video') {
-                    mediaHtml = `
-                        <div class="aspect-video w-full">
-                            <video controls class="w-full h-full object-cover rounded-t-xl">
-                                <source src="${project.media_url}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>`;
-                } else if (project.type === 'audio') {
-                    mediaHtml = `
-                        <div class="p-6">
-                            <audio controls class="w-full">
-                                <source src="${project.media_url}" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>`;
-                } else if (project.type === 'image') {
-                    mediaHtml = `
-                        <img src="${project.media_url}" alt="${project.title}" class="w-full h-auto object-cover rounded-t-xl">
-                    `;
-                }
+    try {
+        const [configRes, projectsRes] = await Promise.all([
+            fetch('config.json'),
+            fetch('projects.json')
+        ]);
 
-                return `
-                    <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105">
-                        ${mediaHtml}
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">${project.title}</h3>
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                                ${project.description}
-                            </p>
-                        </div>
-                    </div>
-                `;
-            };
+        const config = await configRes.json();
+        const projects = await projectsRes.json();
 
-            // Fetch all JSON data concurrently
-            try {
-                const [projectsRes, heroRes, aboutRes] = await Promise.all([
-                    fetch('projects.json'),
-                    fetch('hero.json'),
-                    fetch('about.json')
-                ]);
+        // Update site title and name
+        siteTitle.textContent = config.siteTitle;
+        navName.textContent = config.name;
 
-                const projects = await projectsRes.json();
-                const hero = await heroRes.json();
-                const about = await aboutRes.json();
+        // Update Hero section
+        if (config.showSections.hero) {
+            heroTitle.textContent = config.hero.title;
+            heroDescription.textContent = config.hero.description;
+        } else {
+            document.getElementById('hero').style.display = 'none';
+        }
 
-                // Populate Hero section with fetched data
-                heroTitle.textContent = hero.title;
-                heroDescription.textContent = hero.description;
+        // Update About section
+        if (config.showSections.about) {
+            aboutTitle.textContent = config.about.title;
+            aboutDescription.textContent = config.about.description;
+        } else {
+            document.getElementById('about').style.display = 'none';
+        }
 
-                // Populate About section with fetched data
-                aboutTitle.textContent = about.title;
-                aboutDescription.textContent = about.description;
+        // Update Portfolio section
+        if (config.showSections.portfolio) {
+            projects.forEach(project => {
+                portfolioContainer.innerHTML += createProjectCard(project);
+            });
+        } else {
+            document.getElementById('portfolio').style.display = 'none';
+        }
 
-                // Populate Projects section with fetched data
-                projects.forEach(project => {
-                    const projectCardHtml = createProjectCard(project);
-                    portfolioContainer.innerHTML += projectCardHtml;
-                });
-
-            } catch (e) {
-                console.error('There was a problem fetching a file:', e);
-                heroTitle.textContent = 'Error Loading';
-                heroDescription.textContent = 'There was an issue fetching the portfolio data. Please check your files.';
-                portfolioContainer.innerHTML = '<p class="text-center text-red-500">Could not load projects. Please check the projects.json file.</p>';
-                aboutTitle.textContent = 'Error Loading';
-                aboutDescription.textContent = 'There was an issue fetching the about data.';
-            }
+        // Optional: Add theme color dynamically
+        document.querySelectorAll('.bg-indigo-600').forEach(el => {
+            el.classList.replace('bg-indigo-600', `bg-${config.themeColor}-600`);
         });
+        document.querySelectorAll('.hover\\:bg-indigo-700').forEach(el => {
+            el.classList.replace('hover:bg-indigo-700', `hover:bg-${config.themeColor}-700`);
+        });
+
+        // Social Links (optional future enhancement)
+        // You could inject them in the footer or nav
+    } catch (error) {
+        console.error("Error loading content:", error);
+        heroTitle.textContent = "Content Unavailable";
+        heroDescription.textContent = "Could not fetch the config or projects data.";
+        portfolioContainer.innerHTML = '<p class="text-red-500">Unable to load projects.</p>';
+    }
+});
+
     </script>
 </body>
 </html>
