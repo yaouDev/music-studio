@@ -8,38 +8,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
-
-        /* Fun, animated gradient background */
-        .animated-gradient-bg {
-            background: linear-gradient(-45deg, #f7fafc, #edf2f7, #cbd5e0, #a0aec0);
-            background-size: 400% 400%;
-            animation: gradient-flow 15s ease infinite;
-        }
-
-        .dark .animated-gradient-bg {
-            background: linear-gradient(-45deg, #1f2937, #111827, #374151, #4b5563);
-            background-size: 400% 400%;
-            animation: gradient-flow 15s ease infinite;
-        }
-
-        @keyframes gradient-flow {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
     </style>
 </head>
-<body class="animated-gradient-bg text-gray-800 dark:text-gray-200">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <!-- 3D Animated Background Canvas -->
+    <canvas id="background-canvas"></canvas>
+
     <!-- Header/Navigation Bar -->
     <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -62,7 +49,7 @@
                 Welcome to my portfolio! Here you'll find a collection of my projects, including cool videos, audio clips, and more.
             </p>
             <a href="#portfolio" class="inline-block py-3 px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full shadow-lg transition-transform transform hover:scale-105">
-                See My Work
+                See Our Work
             </a>
         </div>
     </section>
@@ -70,7 +57,7 @@
     <!-- Portfolio Section (Dynamic) -->
     <section id="portfolio" class="py-16">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white">My Projects</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white">Our Projects</h2>
             <div id="portfolio-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project cards will be injected here dynamically -->
             </div>
@@ -85,7 +72,7 @@
                 Hi there! My name is [Your Name], and I'm passionate about [Your Interests, e.g., coding, art, music]. This site showcases some of my favorite projects and creations. I love learning new things and bringing ideas to life!
             </p>
             <a href="#" class="mt-6 inline-block text-indigo-600 hover:underline dark:text-indigo-400 transition-colors">
-                Learn more about my journey
+                Learn more about our journey
             </a>
         </div>
     </section>
@@ -95,15 +82,13 @@
         <div class="container mx-auto px-4 max-w-xl text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">Get In Touch</h2>
             <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                Have a question or want to collaborate? Send me a message!
+                Have a question or want to collaborate? Send us a message!
             </p>
-            <!-- Using a mailto: link to simulate a contact form -->
-            <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
-                <div class="space-y-4">
-                    <input type="text" name="name" placeholder="Your Name" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors">
-                    <input type="email" name="email" placeholder="Your Email" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors">
-                    <textarea name="message" placeholder="Your Message" rows="5" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"></textarea>
-                </div>
+            <!-- IMPORTANT: Replace the action URL below with your unique Formspree endpoint -->
+            <form action="https://formspree.io/f/your-unique-code" method="POST" class="space-y-4">
+                <input type="text" name="name" placeholder="Your Name" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors">
+                <input type="email" name="email" placeholder="Your Email" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors">
+                <textarea name="message" placeholder="Your Message" rows="5" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"></textarea>
                 <button type="submit" class="mt-6 w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105">
                     Send Message
                 </button>
@@ -119,6 +104,80 @@
     </footer>
 
     <script>
+        // Three.js background animation
+        window.onload = function() {
+            const canvas = document.getElementById('background-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            
+            // Camera position
+            camera.position.z = 5;
+
+            // Simple lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            const pointLight = new THREE.PointLight(0xffffff, 1);
+            pointLight.position.set(5, 5, 5);
+            scene.add(pointLight);
+
+            // Create floating shapes
+            const shapes = [];
+            const numShapes = 20;
+            const shapeGeometry = [
+                new THREE.BoxGeometry(0.5, 0.5, 0.5),
+                new THREE.DodecahedronGeometry(0.5),
+                new THREE.TorusKnotGeometry(0.3, 0.1, 100, 16)
+            ];
+
+            const colors = [0x805ad5, 0x667eea, 0x4fd1c5, 0x48bb78];
+
+            for (let i = 0; i < numShapes; i++) {
+                const geometry = shapeGeometry[Math.floor(Math.random() * shapeGeometry.length)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const material = new THREE.MeshPhongMaterial({ color: color, flatShading: true });
+                const shape = new THREE.Mesh(geometry, material);
+
+                shape.position.set(
+                    (Math.random() - 0.5) * 10,
+                    (Math.random() - 0.5) * 10,
+                    (Math.random() - 0.5) * 10
+                );
+                shape.rotation.set(
+                    Math.random() * Math.PI,
+                    Math.random() * Math.PI,
+                    Math.random() * Math.PI
+                );
+
+                shapes.push(shape);
+                scene.add(shape);
+            }
+
+            // Animation loop
+            const animate = function() {
+                requestAnimationFrame(animate);
+
+                shapes.forEach(shape => {
+                    shape.rotation.x += 0.005;
+                    shape.rotation.y += 0.005;
+                });
+
+                renderer.render(scene, camera);
+            };
+
+            // Handle window resizing
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            animate();
+        };
+
+
         document.addEventListener('DOMContentLoaded', async () => {
             const portfolioContainer = document.getElementById('portfolio-container');
             const heroTitle = document.getElementById('hero-title');
