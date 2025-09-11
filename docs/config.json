@@ -33,7 +33,7 @@
   "contact": {
     "title": "Get In Touch",
     "description": "Have a question or want to collaborate? Send a message!",
-    "formAction": "https://formspree.io/f/your-code",
+    "email": "test@test.com",
     "placeholders": {
       "name": "Your Name",
       "email": "Your Email",

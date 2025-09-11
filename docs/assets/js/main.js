@@ -87,17 +87,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Contact
-    if (!config.showSections.contact) {
-      document.getElementById('contact').remove();
-    } else {
-      document.getElementById('contact-title').textContent = config.contact.title;
-      document.getElementById('contact-description').textContent = config.contact.description;
-      document.getElementById('contact-form').action = config.contact.formAction;
-      document.getElementById('contact-name').placeholder = config.contact.placeholders.name;
-      document.getElementById('contact-email').placeholder = config.contact.placeholders.email;
-      document.getElementById('contact-message').placeholder = config.contact.placeholders.message;
-      document.getElementById('contact-button').textContent = config.contact.buttonText;
-    }
+    document.getElementById('contact-name').placeholder = config.contact.placeholders.name;
+    document.getElementById('contact-email').placeholder = config.contact.placeholders.email;
+    document.getElementById('contact-message').placeholder = config.contact.placeholders.message;
+    document.getElementById('contact-button').textContent = config.contact.buttonText;
+
+    // Show fallback mailto link
+    const fallback = document.getElementById('contact-fallback');
+    fallback.innerHTML = `Or email me directly at <a href="mailto:${config.contact.email}" class="underline text-indigo-600 dark:text-indigo-400">${config.contact.email}</a>`;
+
+    // Handle mailto submission
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('contact-name').value;
+    const email = document.getElementById('contact-email').value;
+    const message = document.getElementById('contact-message').value;
+
+    const subject = encodeURIComponent("New Contact From Portfolio");
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+
+    window.location.href = `mailto:${config.contact.email}?subject=${subject}&body=${body}`;
+    });
+
 
     // Footer
     document.getElementById('footer-name').textContent = config.name;
