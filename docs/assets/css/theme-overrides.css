@@ -1,24 +1,32 @@
-/* Diamond background for hero title */
 .hero-title-wrapper {
   position: relative;
-  display: inline-block; /* shrinkwrap the h1 */
+  display: inline-block;
+  padding: 2rem;
 }
 
-.hero-title-wrapper .diamond-bg {
+.diamond-bg {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 140%;
-  height: 140%;
-  background-color: var(--color-primary, #6366F1); /* Uses theme primary color */
+  width: 200px;
+  height: 200px;
+  background-color: var(--color-primary);
   transform: translate(-50%, -50%) rotate(45deg);
-  border-radius: 8px;
-  opacity: 0.15;
-  z-index: 0;
-  pointer-events: none; /* So it doesn't block clicks */
+  z-index: -1;
+  border-radius: 8px; /* Optional */
+  box-shadow: 0 4px 20px var(--color-shadow);
 }
 
-#hero-title {
-  position: relative;
-  z-index: 1; /* Above the diamond */
+@media (min-width: 768px) {
+  .diamond-bg {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .diamond-bg {
+    width: 320px;
+    height: 320px;
+  }
 }
