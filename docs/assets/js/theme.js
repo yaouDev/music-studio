@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     // If theme is inside config
-    const configRes = await fetch('config.json');
-    const config = await configRes.json();
+    const themeRes = await fetch('../../theme.json');
+    const theme = await themeRes.json();
 
-    const theme = config.theme;
     if (!theme) return;
 
     const root = document.documentElement;
