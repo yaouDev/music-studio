@@ -1,40 +1,46 @@
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    // If theme is inside config
-    const themeRes = await fetch('../../theme.json');
-    const theme = await themeRes.json();
-
-    if (!theme) return;
-
+    const res = await fetch('theme.json');
+    const { theme } = await res.json();
     const root = document.documentElement;
 
-    // Dark mode toggle
+    // Dark mode
     if (theme.darkMode) {
-      root.setAttribute('data-theme', 'dark');
+      document.documentElement.classList.add('dark');
     } else {
-      root.removeAttribute('data-theme');
+      document.documentElement.classList.remove('dark');
     }
 
-    // Set font families
-    root.style.setProperty('--font-body', theme.fonts.body || 'Inter, sans-serif');
-    root.style.setProperty('--font-heading', theme.fonts.heading || 'Inter, sans-serif');
+    // Font families
+    if (theme.fonts?.body)
+      root.style.setProperty('--font-body', theme.fonts.body);
+    if (theme.fonts?.heading)
+      root.style.setProperty('--font-heading', theme.fonts.heading);
 
-    // Set heading sizes
-    root.style.setProperty('--font-size-h1', theme.fonts.headingSizes.h1);
-    root.style.setProperty('--font-size-h2', theme.fonts.headingSizes.h2);
-    root.style.setProperty('--font-size-h3', theme.fonts.headingSizes.h3);
-
-    // Set colors
-    Object.entries(theme.colors).forEach(([key, value]) => {
-      root.style.setProperty(`--color-${key}`, value);
-    });
-
-    // Optionally set base size
-    if (theme.fonts.baseSize) {
+    // Font sizes
+    if (theme.fonts?.baseSize)
       root.style.setProperty('--font-size-base', theme.fonts.baseSize);
+    if (theme.fonts?.headingSizes) {
+      Object.entries(theme.fonts.headingSizes).forEach(([key, value]) => {
+        root.style.setProperty(`--font-size-${key}`, value);
+      });
+    }
+
+    // Colors
+    if (theme.colors) {
+      Object.entries(theme.colors).forEach(([key, value]) => {
+        root.style.setProperty(`--color-${key}`, value);
+      });
+    }
+
+    // Spacing
+    if (theme.spacing) {
+      Object.entries(theme.spacing).forEach(([key, value]) => {
+        root.style.setProperty(`--spacing-${key}`, value);
+      });
     }
 
   } catch (err) {
-    console.error('Failed to load theme config:', err);
+    console.error('Error loading theme:', err);
   }
 });
