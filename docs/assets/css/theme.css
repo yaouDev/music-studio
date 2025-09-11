@@ -6,7 +6,17 @@
   --font-size-h2: 2rem;
   --font-size-h3: 1.75rem;
 
-  --color-primary: #6366F1;
+  --color-primary: #050622;
+  --color-primaryLight: #040718;
+  --color-primaryDark: #05041b;
+  --color-text: #9eb8db;
+  --color-textLight: #081325;
+  --color-background: #08121b;
+  --color-backgroundDark: #070f22;
+  --color-accent: #0e3d2e;
+  --color-shadow: rgba(223, 204, 204, 0.1);
+
+  /*--color-primary: #6366F1;
   --color-primaryLight: #A5B4FC;
   --color-primaryDark: #4F46E5;
   --color-text: #1F2937;
@@ -14,7 +24,7 @@
   --color-background: #F9FAFB;
   --color-backgroundDark: #111827;
   --color-accent: #10B981;
-  --color-shadow: rgba(0,0,0,0.1);
+  --color-shadow: rgba(0,0,0,0.1);*/
 
   --spacing-base: 1rem;
   --spacing-large: 2rem;
