@@ -37,227 +37,170 @@
     }
   </style>
 </head>
-
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-    <!-- 3D Animated Background Canvas -->
-    <canvas id="background-canvas"></canvas>
 
-    <!-- Header/Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-gray-900 dark:text-white">Your Name</a>
-            <div class="space-x-4 hidden md:flex">
-                <a href="#portfolio" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">Portfolio</a>
-                <a href="#about" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">About</a>
-                <a href="#contact" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors">Contact</a>
-            </div>
-        </nav>
-    </header>
+  <canvas id="background-canvas"></canvas>
 
-    <!-- Hero Section -->
-    <section id="hero" class="py-16 md:py-24 text-center">
-        <div class="container mx-auto px-4">
-            <h1 id="hero-title" class="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-4">
-                Creative Portfolio
-            </h1>
-            <p id="hero-description" class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-                Welcome to my portfolio! Here you'll find a collection of my projects, including cool videos, audio clips, and more.
-            </p>
-            <a href="#portfolio" class="inline-block py-3 px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full shadow-lg transition-transform transform hover:scale-105">
-                See Our Work
-            </a>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold text-gray-900 dark:text-white" id="nav-name">Your Name</a>
+      <div class="space-x-4 hidden md:flex">
+        <a href="#portfolio" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400">Portfolio</a>
+        <a href="#about" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400">About</a>
+        <a href="#contact" class="text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="py-16 md:py-24 text-center">
+    <div class="container mx-auto px-4">
+      <h1 id="hero-title" class="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-4">
+        Creative Portfolio
+      </h1>
+      <p id="hero-description" class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+        Welcome to my portfolio! Here you'll find a collection of my projects.
+      </p>
+      <a href="#portfolio" class="inline-block py-3 px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full shadow-lg transition-transform transform hover:scale-105">
+        See My Work
+      </a>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white">My Projects</h2>
+      <div id="portfolio-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Projects will be loaded dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-16 md:py-24 text-center">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <h2 id="about-title" class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">About Me</h2>
+      <p id="about-description" class="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+        I’m passionate about coding and design. This site showcases my favorite projects.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 md:py-24 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4 max-w-xl text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">Get In Touch</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">Have a question or want to collaborate? Send a message!</p>
+      <form action="https://formspree.io/f/your-code" method="POST" class="space-y-4">
+        <input type="text" name="name" placeholder="Your Name" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:text-white" />
+        <input type="email" name="email" placeholder="Your Email" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:text-white" />
+        <textarea name="message" placeholder="Your Message" rows="5" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:text-white"></textarea>
+        <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 dark:bg-gray-900 text-gray-400 py-6 text-center">
+    <div class="container mx-auto px-4">
+      <p>&copy; 2025 <span id="footer-name">Your Name</span>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+  function createProjectCard(project) {
+    let mediaHtml = '';
+
+    if (project.type === 'video') {
+      mediaHtml = `
+        <div class="aspect-video w-full">
+          <video controls class="w-full h-full object-cover rounded-t-xl">
+            <source src="${project.media_url}" type="video/mp4" />
+          </video>
+        </div>`;
+    } else if (project.type === 'audio') {
+      mediaHtml = `
+        <div class="p-6">
+          <audio controls class="w-full">
+            <source src="${project.media_url}" type="audio/mpeg" />
+          </audio>
+        </div>`;
+    } else {
+      mediaHtml = `<img src="${project.media_url}" alt="${project.title}" class="w-full rounded-t-xl" />`;
+    }
+
+    return `
+      <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
+        ${mediaHtml}
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white">${project.title}</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">${project.description}</p>
         </div>
-    </section>
+      </div>`;
+  }
 
-    <!-- Portfolio Section (Dynamic) -->
-    <section id="portfolio" class="py-16">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white">Our Projects</h2>
-            <div id="portfolio-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project cards will be injected here dynamically -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-16 md:py-24 text-center">
-        <div class="container mx-auto px-4 max-w-3xl">
-            <h2 id="about-title" class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">About Me</h2>
-            <p id="about-description" class="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                Hi there! My name is [Your Name], and I'm passionate about [Your Interests, e.g., coding, art, music]. This site showcases some of my favorite projects and creations. I love learning new things and bringing ideas to life!
-            </p>
-            <a href="#" class="mt-6 inline-block text-indigo-600 hover:underline dark:text-indigo-400 transition-colors">
-                Learn more about our journey
-            </a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-white dark:bg-gray-800">
-        <div class="container mx-auto px-4 max-w-xl text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">Get In Touch</h2>
-            <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                Have a question or want to collaborate? Send us a message!
-            </p>
-            <!-- IMPORTANT: Replace the action URL below with your unique Formspree endpoint -->
-            <form action="https://formspree.io/f/your-unique-code" method="POST" class="space-y-4">
-                <input type="text" name="name" placeholder="Your Name" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors">
-                <input type="email" name="email" placeholder="Your Email" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors">
-                <textarea name="message" placeholder="Your Message" rows="5" class="w-full p-3 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"></textarea>
-                <button type="submit" class="mt-6 w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                    Send Message
-                </button>
-            </form>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="bg-gray-800 dark:bg-gray-900 text-gray-400 py-6 text-center">
-        <div class="container mx-auto px-4">
-            <p>&copy; 2024 Your Name. Built with curiosity and code.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Three.js background animation
-        window.onload = function() {
-            const canvas = document.getElementById('background-canvas');
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
-            
-            // Camera position
-            camera.position.z = 5;
-
-            // Simple lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-            scene.add(ambientLight);
-            const pointLight = new THREE.PointLight(0xffffff, 1);
-            pointLight.position.set(5, 5, 5);
-            scene.add(pointLight);
-
-            // Create floating shapes
-            const shapes = [];
-            const numShapes = 20;
-            const shapeGeometry = [
-                new THREE.BoxGeometry(0.5, 0.5, 0.5),
-                new THREE.DodecahedronGeometry(0.5),
-                new THREE.TorusKnotGeometry(0.3, 0.1, 100, 16)
-            ];
-
-            const colors = [0x805ad5, 0x667eea, 0x4fd1c5, 0x48bb78];
-
-            for (let i = 0; i < numShapes; i++) {
-                const geometry = shapeGeometry[Math.floor(Math.random() * shapeGeometry.length)];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                const material = new THREE.MeshPhongMaterial({ color: color, flatShading: true });
-                const shape = new THREE.Mesh(geometry, material);
-
-                shape.position.set(
-                    (Math.random() - 0.5) * 10,
-                    (Math.random() - 0.5) * 10,
-                    (Math.random() - 0.5) * 10
-                );
-                shape.rotation.set(
-                    Math.random() * Math.PI,
-                    Math.random() * Math.PI,
-                    Math.random() * Math.PI
-                );
-
-                shapes.push(shape);
-                scene.add(shape);
-            }
-
-            // Animation loop
-            const animate = function() {
-                requestAnimationFrame(animate);
-
-                shapes.forEach(shape => {
-                    shape.rotation.x += 0.005;
-                    shape.rotation.y += 0.005;
-                });
-
-                renderer.render(scene, camera);
-            };
-
-            // Handle window resizing
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-
-            animate();
-        };
-
-
-        document.addEventListener('DOMContentLoaded', async () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     const heroTitle = document.getElementById('hero-title');
     const heroDescription = document.getElementById('hero-description');
     const aboutTitle = document.getElementById('about-title');
     const aboutDescription = document.getElementById('about-description');
     const portfolioContainer = document.getElementById('portfolio-container');
     const siteTitle = document.getElementById('site-title');
-    const navName = document.querySelector('header nav a');
+    const navName = document.getElementById('nav-name');
+    const footerName = document.getElementById('footer-name');
 
     try {
-        const [configRes, projectsRes] = await Promise.all([
-            fetch('config.json'),
-            fetch('projects.json')
-        ]);
+      const [configRes, projectsRes] = await Promise.all([
+        fetch('config.json'),
+        fetch('projects.json')
+      ]);
 
-        const config = await configRes.json();
-        const projects = await projectsRes.json();
+      const config = await configRes.json();
+      const projects = await projectsRes.json();
 
-        // Update site title and name
-        siteTitle.textContent = config.siteTitle;
-        navName.textContent = config.name;
+      // Apply config values
+      siteTitle.textContent = config.siteTitle;
+      navName.textContent = config.name;
+      footerName.textContent = config.name;
 
-        // Update Hero section
-        if (config.showSections.hero) {
-            heroTitle.textContent = config.hero.title;
-            heroDescription.textContent = config.hero.description;
-        } else {
-            document.getElementById('hero').style.display = 'none';
-        }
+      if (!config.showSections.hero) {
+        document.getElementById('hero').remove();
+      } else {
+        heroTitle.textContent = config.hero.title;
+        heroDescription.textContent = config.hero.description;
+      }
 
-        // Update About section
-        if (config.showSections.about) {
-            aboutTitle.textContent = config.about.title;
-            aboutDescription.textContent = config.about.description;
-        } else {
-            document.getElementById('about').style.display = 'none';
-        }
+      if (!config.showSections.about) {
+        document.getElementById('about').remove();
+      } else {
+        aboutTitle.textContent = config.about.title;
+        aboutDescription.textContent = config.about.description;
+      }
 
-        // Update Portfolio section
-        if (config.showSections.portfolio) {
-            projects.forEach(project => {
-                portfolioContainer.innerHTML += createProjectCard(project);
-            });
-        } else {
-            document.getElementById('portfolio').style.display = 'none';
-        }
-
-        // Optional: Add theme color dynamically
-        document.querySelectorAll('.bg-indigo-600').forEach(el => {
-            el.classList.replace('bg-indigo-600', `bg-${config.themeColor}-600`);
+      if (!config.showSections.portfolio) {
+        document.getElementById('portfolio').remove();
+      } else {
+        projects.forEach(project => {
+          portfolioContainer.innerHTML += createProjectCard(project);
         });
-        document.querySelectorAll('.hover\\:bg-indigo-700').forEach(el => {
-            el.classList.replace('hover:bg-indigo-700', `hover:bg-${config.themeColor}-700`);
-        });
+      }
 
-        // Social Links (optional future enhancement)
-        // You could inject them in the footer or nav
+      if (!config.showSections.contact) {
+        document.getElementById('contact').remove();
+      }
+
     } catch (error) {
-        console.error("Error loading content:", error);
-        heroTitle.textContent = "Content Unavailable";
-        heroDescription.textContent = "Could not fetch the config or projects data.";
-        portfolioContainer.innerHTML = '<p class="text-red-500">Unable to load projects.</p>';
+      console.error('Error loading data:', error);
+      heroTitle.textContent = "Error loading content";
+      heroDescription.textContent = "Please check config.json and projects.json";
+      portfolioContainer.innerHTML = '<p class="text-center text-red-500">Unable to load projects.</p>';
     }
-});
-
-    </script>
+  });
+</script>
 </body>
 </html>
