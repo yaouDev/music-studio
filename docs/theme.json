@@ -1,11 +1,11 @@
 {
   "theme": {
     "fonts": {
-      "body": "'Oswald', sans-serif",
-      "heading": "'Oswald', sans-serif",
+      "body": "'Bitcount Grid Double', system-ui",
+      "heading": "'Bitcount Grid Double', system-ui",
       "baseSize": "18px",
       "fontWeights": {
-        "body": 400,
+        "body": 500,
         "heading": 700
       },
       "headingSizes": {
@@ -23,7 +23,10 @@
       "background": "#121212",
       "backgroundDark": "#0A0A0A",
       "accent": "#E63946",
-      "shadow": "rgba(0, 0, 0, 0.7)"
+      "shadow": "rgba(0, 0, 0, 0.7)",
+      "button-bg": "#E63946",
+      "button-text": "#FFFFFF",
+      "button-bg-hover": "#D62828"
     },
     "spacing": {
       "base": "1.25rem",

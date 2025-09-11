@@ -19,13 +19,13 @@
     "contact": true
   },
   "hero": {
-    "title": "Studio Ater | Portfolio",
-    "description": "The works of Studio Ater",
+    "title": "Studio Ater",
+    "description": "スタジオ・アーテル",
     "buttonText": "Our Work"
   },
   "about": {
     "title": "About Us",
-    "description": "We're two classically trained Swedish composers who make music and audio for as art and for media, based in Japan"
+    "description": "We're two classically trained Swedish composers who make music and audio as art and for media, based in Japan"
   },
   "portfolio": {
     "title": "Our Projects"
