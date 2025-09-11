@@ -1,0 +1,38 @@
+:root {
+  /* These will be updated dynamically by theme.js */
+  --font-body: 'Montserrat, sans-serif';
+  --font-heading: 'Poppins, sans-serif';
+  --font-base-size: 18px;
+  --font-weight-body: 400;
+  --font-weight-heading: 700;
+  --heading-h1-size: 3rem;
+  --heading-h2-size: 2.5rem;
+  --heading-h3-size: 2rem;
+}
+
+/* Apply the fonts using the CSS variables */
+body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
+  font-size: var(--font-base-size);
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: var(--heading-h1-size);
+}
+
+h2 {
+  font-size: var(--heading-h2-size);
+}
+
+h3 {
+  font-size: var(--heading-h3-size);
+}

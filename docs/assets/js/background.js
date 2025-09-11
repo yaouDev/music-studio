@@ -10,76 +10,82 @@ window.addEventListener('load', () => {
     0.1,
     1000
   );
-  camera.position.z = 7;
+  camera.position.z = 5;
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
 
-  // Ambient and subtle red glow
-  const ambientLight = new THREE.AmbientLight(0x222222, 0.8);
-  scene.add(ambientLight);
+  // Create a gradient background with dark colors
+  const gradientTexture = new THREE.TextureLoader().load(
+    'https://cdn.pixabay.com/photo/2017/12/20/18/59/gradient-3039837_960_720.png'
+  );
+  const bgMaterial = new THREE.MeshBasicMaterial({ map: gradientTexture });
+  const bgGeometry = new THREE.PlaneGeometry(20, 20);
+  const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+  bgMesh.position.z = -10;
+  scene.add(bgMesh);
 
-  // Red accent point lights, softly glowing
-  const redLight1 = new THREE.PointLight(0xE63946, 1, 10);
-  redLight1.position.set(3, 3, 3);
-  scene.add(redLight1);
+  // Particle system parameters
+  const particleCount = 500;
+  const positions = new Float32Array(particleCount * 3);
+  const speeds = new Float32Array(particleCount);
+  const phases = new Float32Array(particleCount);
 
-  const redLight2 = new THREE.PointLight(0xE63946, 0.5, 15);
-  redLight2.position.set(-4, -2, 2);
-  scene.add(redLight2);
+  for (let i = 0; i < particleCount; i++) {
+    // Start particles randomly spread in a box volume
+    positions[i * 3] = (Math.random() - 0.5) * 10;      // x
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 6;   // y
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 4;   // z
 
-  const shapes = [];
-  const geometries = [
-    new THREE.TorusKnotGeometry(0.5, 0.15, 100, 16),
-    new THREE.SphereGeometry(0.6, 32, 32)
-  ];
-
-  const colors = [0x0D0D0D, 0x1A1A1A, 0x333333, 0x4A4A4A]; // Dark greys and black
-
-  for (let i = 0; i < 15; i++) {
-    const geometry = geometries[i % geometries.length];
-    const color = colors[i % colors.length];
-    const material = new THREE.MeshStandardMaterial({
-      color,
-      roughness: 0.7,
-      metalness: 0.3,
-      emissive: 0x000000,
-      flatShading: false,
-    });
-
-    const shape = new THREE.Mesh(geometry, material);
-    shape.position.set(
-      (Math.random() - 0.5) * 12,
-      (Math.random() - 0.5) * 8,
-      (Math.random() - 0.5) * 6
-    );
-    shape.rotation.set(
-      Math.random() * Math.PI,
-      Math.random() * Math.PI,
-      Math.random() * Math.PI
-    );
-
-    scene.add(shape);
-    shapes.push(shape);
+    speeds[i] = 0.001 + Math.random() * 0.002;
+    phases[i] = Math.random() * Math.PI * 2;
   }
 
-  let clock = new THREE.Clock();
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  // Use a subtle glowing red texture for particles
+  const sprite = new THREE.TextureLoader().load(
+    'https://threejs.org/examples/textures/sprites/circle.png'
+  );
+
+  const material = new THREE.PointsMaterial({
+    size: 0.08,
+    map: sprite,
+    transparent: true,
+    opacity: 0.7,
+    color: 0xE63946,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+  });
+
+  const particles = new THREE.Points(geometry, material);
+  scene.add(particles);
+
+  const clock = new THREE.Clock();
 
   function animate() {
     requestAnimationFrame(animate);
 
-    let elapsed = clock.getElapsedTime();
+    const time = clock.getElapsedTime();
 
-    shapes.forEach((shape, i) => {
-      // Slow rotations with oscillations
-      shape.rotation.x += 0.002 + 0.001 * Math.sin(elapsed + i);
-      shape.rotation.y += 0.003 + 0.0015 * Math.cos(elapsed + i * 1.1);
+    const positions = geometry.attributes.position.array;
 
-      // Slight pulsating scale for subtle breathing effect
-      const scale = 1 + 0.05 * Math.sin(elapsed * 2 + i);
-      shape.scale.set(scale, scale, scale);
-    });
+    for (let i = 0; i < particleCount; i++) {
+      // Organic drifting movement: particles gently move up and sway sideways
+      positions[i * 3 + 1] += speeds[i];  // drift upward
+      positions[i * 3] += 0.002 * Math.sin(time + phases[i]);  // sway left/right
+
+      // Reset particles that move too far up to bottom to loop infinitely
+      if (positions[i * 3 + 1] > 3) {
+        positions[i * 3 + 1] = -3;
+        positions[i * 3] = (Math.random() - 0.5) * 10;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 4;
+      }
+    }
+
+    geometry.attributes.position.needsUpdate = true;
 
     renderer.render(scene, camera);
   }

@@ -1,39 +1,45 @@
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const res = await fetch('theme.json');
-    const { theme } = await res.json();
-    const root = document.documentElement;
+(async () => {
+  const res = await fetch('assets/theme.json');
+  const data = await res.json();
+  const theme = data.theme;
+  const root = document.documentElement;
 
-    // Font families
-    if (theme.fonts?.body)
-      root.style.setProperty('--font-body', theme.fonts.body);
-    if (theme.fonts?.heading)
-      root.style.setProperty('--font-heading', theme.fonts.heading);
+  // Update color variables (optional)
+  Object.entries(theme.colors).forEach(([key, value]) => {
+    root.style.setProperty(`--color-${key.toLowerCase()}`, value);
+  });
 
-    // Font sizes
-    if (theme.fonts?.baseSize)
-      root.style.setProperty('--font-size-base', theme.fonts.baseSize);
-    if (theme.fonts?.headingSizes) {
-      Object.entries(theme.fonts.headingSizes).forEach(([key, value]) => {
-        root.style.setProperty(`--font-size-${key}`, value);
-      });
-    }
+  // Update font variables
+  const fonts = theme.fonts;
+  root.style.setProperty('--font-body', fonts.body);
+  root.style.setProperty('--font-heading', fonts.heading);
+  root.style.setProperty('--font-base-size', fonts.baseSize);
+  root.style.setProperty('--font-weight-body', fonts.fontWeights.body);
+  root.style.setProperty('--font-weight-heading', fonts.fontWeights.heading);
+  root.style.setProperty('--heading-h1-size', fonts.headingSizes.h1);
+  root.style.setProperty('--heading-h2-size', fonts.headingSizes.h2);
+  root.style.setProperty('--heading-h3-size', fonts.headingSizes.h3);
 
-    // Colors
-    if (theme.colors) {
-      Object.entries(theme.colors).forEach(([key, value]) => {
-        root.style.setProperty(`--color-${key}`, value);
-      });
-    }
+  // Dynamically load Google Fonts
+  const extractFontNames = (fontString) =>
+    fontString
+      .split(',')
+      .map(f => f.trim())
+      .filter(f => !['sans-serif', 'serif', 'monospace'].includes(f.toLowerCase()))
+      .map(f => f.replace(/['"]/g, ''));
 
-    // Spacing
-    if (theme.spacing) {
-      Object.entries(theme.spacing).forEach(([key, value]) => {
-        root.style.setProperty(`--spacing-${key}`, value);
-      });
-    }
+  const fontsToLoad = new Set([
+    ...extractFontNames(fonts.body),
+    ...extractFontNames(fonts.heading),
+  ]);
 
-  } catch (err) {
-    console.error('Error loading theme:', err);
+  if (fontsToLoad.size > 0) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href =
+      'https://fonts.googleapis.com/css2?' +
+      [...fontsToLoad].map(f => `family=${encodeURIComponent(f)}`).join('&') +
+      '&display=swap';
+    document.head.appendChild(link);
   }
-});
+})();
