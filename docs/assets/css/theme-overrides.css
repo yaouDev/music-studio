@@ -2,6 +2,30 @@
   position: relative;
   display: inline-block;
   padding: 2rem;
+  z-index: 1; /* Context for stacking children */
+}
+
+/* The realistic sunbeam glow behind the diamond and text */
+.sunbeam-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 0; /* Behind diamond and text */
+
+  background:
+    radial-gradient(circle at center, rgba(230, 57, 70, 0.3) 0%, transparent 60%),
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(230, 57, 70, 0.07) 0deg 4deg,
+      transparent 4deg 8deg
+    );
+  filter: blur(20px);
+  animation: subtlePulse 5s ease-in-out infinite, slowRotate 30s linear infinite;
+  border-radius: 50%;
 }
 
 .diamond-bg {
@@ -12,36 +36,22 @@
   height: 200px;
   background-color: var(--color-primary);
   transform: translate(-50%, -50%) rotate(45deg);
-  z-index: 1; /* Above sunbeams */
-  border-radius: 8px; /* Optional */
+  z-index: 1;
+  border-radius: 8px;
   box-shadow: 0 4px 20px var(--color-shadow);
   overflow: visible;
 }
 
-/* Sunbeam glow container behind diamond */
-.diamond-bg::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 320px;
-  height: 320px;
-  background:
-    repeating-conic-gradient(
-      from 0deg,
-      rgba(230, 57, 70, 0.15) 0deg 5deg,
-      rgba(230, 57, 70, 0) 5deg 10deg
-    );
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  filter: blur(10px);
-  z-index: 0;
-  animation: rotateSunbeams 10s linear infinite;
-  pointer-events: none;
+@keyframes subtlePulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
-/* Animate the sunbeams to slowly rotate */
-@keyframes rotateSunbeams {
+@keyframes slowRotate {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
   }
@@ -50,24 +60,25 @@
   }
 }
 
+/* Responsive sizes */
 @media (min-width: 768px) {
+  .sunbeam-glow {
+    width: 500px;
+    height: 500px;
+  }
   .diamond-bg {
     width: 260px;
     height: 260px;
   }
-  .diamond-bg::before {
-    width: 420px;
-    height: 420px;
-  }
 }
 
 @media (min-width: 1024px) {
+  .sunbeam-glow {
+    width: 600px;
+    height: 600px;
+  }
   .diamond-bg {
     width: 320px;
     height: 320px;
-  }
-  .diamond-bg::before {
-    width: 520px;
-    height: 520px;
   }
 }

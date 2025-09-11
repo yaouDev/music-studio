@@ -1,8 +1,8 @@
 {
   "theme": {
     "fonts": {
-      "body": "'Lobster', cursive",
-      "heading": "'Lobster', cursive",
+      "body": "'Oswald', sans-serif",
+      "heading": "'Oswald', sans-serif",
       "baseSize": "18px",
       "fontWeights": {
         "body": 400,
