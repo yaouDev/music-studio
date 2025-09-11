@@ -1,8 +1,8 @@
 {
   "theme": {
     "fonts": {
-      "body": "Montserrat, sans-serif",
-      "heading": "Poppins, sans-serif",
+      "body": "'Lobster', cursive",
+      "heading": "'Lobster', cursive",
       "baseSize": "18px",
       "fontWeights": {
         "body": 400,
