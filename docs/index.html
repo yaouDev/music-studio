@@ -19,6 +19,10 @@
   <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/theme-overrides.css" />
+
+
   <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="assets/js/background.js"></script>
@@ -53,14 +57,18 @@
 
   <!-- Hero Section -->
   <section id="hero" class="py-16 md:py-24 text-center">
-    <div class="container mx-auto px-4">
+  <div class="container mx-auto px-4">
+    <div class="hero-title-wrapper mx-auto inline-block">
+      <div class="diamond-bg"></div>
       <h1 id="hero-title" class="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-4">...</h1>
-      <p id="hero-description" class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">...</p>
-      <a href="#portfolio" id="hero-button" class="inline-block py-3 px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full shadow-lg transition-transform transform hover:scale-105">
-        ...
-      </a>
     </div>
+    <p id="hero-description" class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">...</p>
+    <a href="#portfolio" id="hero-button" class="inline-block py-3 px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full shadow-lg transition-transform transform hover:scale-105">
+      ...
+    </a>
+  </div>
   </section>
+ 
 
   <!-- Portfolio -->
   <section id="portfolio" class="py-16">
