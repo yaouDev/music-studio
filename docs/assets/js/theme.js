@@ -2,45 +2,69 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     const res = await fetch('theme.json');
     const { theme } = await res.json();
+
+    if (!theme || typeof theme !== 'object') throw new Error('Invalid theme format.');
+
     const root = document.documentElement;
 
-    // Dark mode
-    if (theme.darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    // Apply Dark Mode
+    applyDarkMode(theme.darkMode);
 
-    // Font families
-    if (theme.fonts?.body)
-      root.style.setProperty('--font-body', theme.fonts.body);
-    if (theme.fonts?.heading)
-      root.style.setProperty('--font-heading', theme.fonts.heading);
+    // Apply all theme sections
+    applyFontVariables(theme.fonts);
+    applyColorVariables(theme.colors);
+    applySpacingVariables(theme.spacing);
 
-    // Font sizes
-    if (theme.fonts?.baseSize)
-      root.style.setProperty('--font-size-base', theme.fonts.baseSize);
-    if (theme.fonts?.headingSizes) {
-      Object.entries(theme.fonts.headingSizes).forEach(([key, value]) => {
-        root.style.setProperty(`--font-size-${key}`, value);
-      });
-    }
+    // Set mobile browser theme color
+    updateMetaThemeColor(theme.colors?.primary);
 
-    // Colors
-    if (theme.colors) {
-      Object.entries(theme.colors).forEach(([key, value]) => {
-        root.style.setProperty(`--color-${key}`, value);
-      });
-    }
-
-    // Spacing
-    if (theme.spacing) {
-      Object.entries(theme.spacing).forEach(([key, value]) => {
-        root.style.setProperty(`--spacing-${key}`, value);
-      });
-    }
+    // Prevent flash of unstyled content
+    document.body.classList.remove('loading');
 
   } catch (err) {
     console.error('Error loading theme:', err);
+    document.body.classList.remove('loading');
   }
 });
+
+function applyDarkMode(enabled) {
+  if (enabled) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+}
+
+function applyFontVariables(fonts = {}) {
+  const root = document.documentElement;
+  root.style.setProperty('--font-body', fonts.body || 'Inter, sans-serif');
+  root.style.setProperty('--font-heading', fonts.heading || 'Poppins, sans-serif');
+  root.style.setProperty('--font-size-base', fonts.baseSize || '16px');
+
+  const headingSizes = fonts.headingSizes || {};
+  Object.entries(headingSizes).forEach(([key, value]) => {
+    root.style.setProperty(`--font-size-${key}`, value);
+  });
+}
+
+function applyColorVariables(colors = {}) {
+  applyCssVariables('color', colors);
+}
+
+function applySpacingVariables(spacing = {}) {
+  applyCssVariables('spacing', spacing);
+}
+
+function applyCssVariables(prefix, variables) {
+  const root = document.documentElement;
+  Object.entries(variables).forEach(([key, value]) => {
+    root.style.setProperty(`--${prefix}-${key}`, value);
+  });
+}
+
+function updateMetaThemeColor(color) {
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta && color) {
+    meta.setAttribute('content', color);
+  }
+}
