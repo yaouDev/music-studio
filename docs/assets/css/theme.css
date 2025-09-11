@@ -1,23 +1,23 @@
 :root {
-  --font-body: 'Inter', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
   --font-heading: 'Poppins', sans-serif;
-  --font-size-base: 16px;
-  --font-size-h1: 2.5rem;
-  --font-size-h2: 2rem;
-  --font-size-h3: 1.75rem;
+  --font-size-base: 18px;
+  --font-size-h1: 3rem;
+  --font-size-h2: 2.5rem;
+  --font-size-h3: 2rem;
 
-  --color-primary: #f10410;
-  --color-primaryLight: #09ee2f;
-  --color-primaryDark: #06cee9;
-  --color-text: #1F2937;
-  --color-textLight: #9CA3AF;
-  --color-background: #F9FAFB;
-  --color-backgroundDark: #111827;
-  --color-accent: #10B981;
-  --color-shadow: rgba(0,0,0,0.1);
+  --color-primary: #0D0D0D;          /* Deep black */
+  --color-primaryLight: #1A1A1A;     /* Dark charcoal */
+  --color-primaryDark: #000000;      /* Pure black */
+  --color-text: #E0E0E0;             /* Light grey */
+  --color-textLight: #A3A3A3;        /* Softer light grey */
+  --color-background: #121212;       /* Dark background */
+  --color-backgroundDark: #0A0A0A;   /* Even darker sections */
+  --color-accent: #E63946;           /* Bold red accent */
+  --color-shadow: rgba(0, 0, 0, 0.7);
 
-  --spacing-base: 1rem;
-  --spacing-large: 2rem;
+  --spacing-base: 1.25rem;
+  --spacing-large: 2.5rem;
 }
 
 body {
