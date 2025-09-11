@@ -15,6 +15,37 @@
   z-index: -1;
   border-radius: 8px; /* Optional */
   box-shadow: 0 4px 20px var(--color-shadow);
+  overflow: visible; /* Ensure glow can show */
+  /* For smooth transform on the pseudo element */
+  will-change: transform, opacity;
+}
+
+.diamond-bg::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 260px;  /* Slightly bigger than diamond */
+  height: 260px;
+  background-color: #E63946;  /* Bold red glow */
+  filter: blur(20px);
+  opacity: 0.7;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 12px;
+  z-index: -2;
+  animation: pulseGlow 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.1);
+  }
 }
 
 @media (min-width: 768px) {
@@ -22,11 +53,19 @@
     width: 260px;
     height: 260px;
   }
+  .diamond-bg::before {
+    width: 330px;
+    height: 330px;
+  }
 }
 
 @media (min-width: 1024px) {
   .diamond-bg {
     width: 320px;
     height: 320px;
+  }
+  .diamond-bg::before {
+    width: 400px;
+    height: 400px;
   }
 }
