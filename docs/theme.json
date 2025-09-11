@@ -1,0 +1,30 @@
+{
+  "theme": {
+    "darkMode": true,
+    "fonts": {
+      "body": "Inter, sans-serif",
+      "heading": "Poppins, sans-serif",
+      "baseSize": "16px",
+      "headingSizes": {
+        "h1": "2.5rem",
+        "h2": "2rem",
+        "h3": "1.75rem"
+      }
+    },
+    "colors": {
+      "primary": "#6366F1",
+      "primaryLight": "#A5B4FC",
+      "primaryDark": "#4F46E5",
+      "text": "#1F2937",
+      "textLight": "#9CA3AF",
+      "background": "#F9FAFB",
+      "backgroundDark": "#111827",
+      "accent": "#10B981",
+      "shadow": "rgba(0,0,0,0.1)"
+    },
+    "spacing": {
+      "base": "1rem",
+      "large": "2rem"
+    }
+  }
+}

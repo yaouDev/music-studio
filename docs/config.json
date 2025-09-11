@@ -1,10 +1,10 @@
 {
-  "siteTitle": "Jane Doe | Portfolio",
-  "name": "Jane Doe",
+  "siteTitle": "Studio Ater | Portfolio",
+  "name": "Studio Ater",
   "meta": {
     "description": "A creative portfolio showcasing my work and skills.",
-    "ogTitle": "Jane Doe Portfolio",
-    "ogDescription": "Check out my projects, skills, and contact information.",
+    "ogTitle": "Studio Ater Portfolio",
+    "ogDescription": "Check out our projects, skills, and contact information.",
     "ogImage": "your-image-url.jpg"
   },
   "nav": [
@@ -19,16 +19,16 @@
     "contact": true
   },
   "hero": {
-    "title": "Creative Portfolio",
-    "description": "Welcome to my portfolio! Here you'll find a collection of my projects.",
-    "buttonText": "See My Work"
+    "title": "Studio Ater | Portfolio",
+    "description": "The works of Studio Ater",
+    "buttonText": "Our Work"
   },
   "about": {
-    "title": "About Me",
-    "description": "I’m passionate about coding and design. This site showcases my favorite projects."
+    "title": "About Us",
+    "description": "We're two classically trained Swedish composers who make music and audio for as art and for media, based in Japan"
   },
   "portfolio": {
-    "title": "My Projects"
+    "title": "Our Projects"
   },
   "contact": {
     "title": "Get In Touch",
