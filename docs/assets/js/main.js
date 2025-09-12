@@ -128,13 +128,17 @@ function createProjectCard(project) {
   }
 
   return `
-    <div class="card-theme rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
+    <a
+      href="${project.id}"
+      class="block rounded-xl shadow-lg card-theme transform transition-transform duration-300 hover:scale-105 cursor-pointer"
+    >
       ${mediaHtml}
       <div class="p-6">
         <h3 class="text-xl font-bold text-theme-text">${project.title}</h3>
         <p class="mt-2 text-sm text-theme-muted">${project.description}</p>
       </div>
-    </div>`;
+    </a>
+    `;
 }
 
 // Utility function to show/hide sections and optionally run a callback to fill content
