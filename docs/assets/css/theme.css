@@ -53,3 +53,9 @@ header, footer {
   color: var(--color-header-text);
 }
 
+.card-theme {
+  background-color: var(--color-primaryLight);
+  color: var(--color-text);
+}
+
+

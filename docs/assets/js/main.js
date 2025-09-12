@@ -128,11 +128,11 @@ function createProjectCard(project) {
   }
 
   return `
-    <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
+    <div class="card-theme rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
       ${mediaHtml}
       <div class="p-6">
-        <h3 class="text-xl font-bold text-gray-900 dark:text-white">${project.title}</h3>
-        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">${project.description}</p>
+        <h3 class="text-xl font-bold text-theme-text">${project.title}</h3>
+        <p class="mt-2 text-sm text-theme-muted">${project.description}</p>
       </div>
     </div>`;
 }
