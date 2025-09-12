@@ -42,8 +42,8 @@ h3 { font-size: var(--heading-h3-size); }
 .text-theme-text { color: var(--color-text); }
 .text-theme-muted { color: var(--color-muted); }
 .bg-theme-button {
-  background-color: var(--color-button-bg);
-  color: var(--color-button-text);
+  background-color: var(--color-button-bg, #E63946); /* fallback red */
+  color: var(--color-button-text, #fff);
 }
 .bg-theme-button:hover {
   background-color: var(--color-button-bg-hover);
