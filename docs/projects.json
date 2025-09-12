@@ -7,7 +7,7 @@
   },
   {
     "title": "Project Beta",
-    "description": "A short film made with Blender.",
+    "description": "A short film made with Blender. Now I'm trying to make a really long text, in fact, so long that it probably won't fit inside the card, and I'm curious about how the website will attempt to handle this as I haven't made any explicit code to handle such a scenario. It seems it actually does make all adjacent card the same height and just keeps getting long and longer",
     "media_url": "https://example.com/video.mp4",
     "type": "video"
   },
@@ -16,5 +16,11 @@
     "description": "A sonic identity created for a brand.",
     "media_url": "https://example.com/audio.mp3",
     "type": "audio"
+  },
+  {
+    "title": "Bird test",
+    "description": "A bird test",
+    "media_url": "./assets/media/images/bird.jpg",
+    "type": "image"
   }
 ]

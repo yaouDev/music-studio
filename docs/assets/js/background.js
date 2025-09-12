@@ -1,110 +1,123 @@
-window.addEventListener('load', () => {
-  const canvas = document.getElementById('bg');
-  if (!canvas || !window.THREE) return;
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
 
-  // === Setup ===
-  const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x0a0a0a, 10, 30); // Dark fog
+let width, height;
+let particles = [];
+const particleCount = 40;
 
-  const camera = new THREE.PerspectiveCamera(
-    60,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    100
-  );
-  camera.position.z = 15;
+// Parallax values based on scroll
+let parallax = { x: 0, y: 0 };
+let scrollY = 0;
 
-  const renderer = new THREE.WebGLRenderer({
-    canvas,
-    antialias: true,
-    alpha: true
-  });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setClearColor(scene.fog.color); // Match fog
+function resize() {
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width * devicePixelRatio;
+  canvas.height = height * devicePixelRatio;
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+}
 
-  // === Lighting ===
-  const ambient = new THREE.AmbientLight(0xffffff, 0.3);
-  scene.add(ambient);
+window.addEventListener('resize', resize);
+resize();
 
-  const directional = new THREE.DirectionalLight(0xffffff, 0.7);
-  directional.position.set(5, 10, 7.5);
-  scene.add(directional);
+// Track scroll position
+window.addEventListener('scroll', () => {
+  scrollY = window.scrollY || window.pageYOffset;
+});
 
-  // === Prism Geometry and Material ===
-  const prismGeometry = new THREE.CylinderGeometry(0.3, 0.3, 2, 6);
-  const prismMaterial = new THREE.MeshStandardMaterial({
-    color: 0x222222,
-    metalness: 0.8,
-    roughness: 0.2,
-    emissive: 0x000000
-  });
+// Uniform dark color
+const PARTICLE_COLOR = { r: 30, g: 30, b: 47 };
 
-  // === Generate Prisms ===
-  const prisms = [];
-  const COUNT = 20;
-
-  for (let i = 0; i < COUNT; i++) {
-    const prism = new THREE.Mesh(prismGeometry, prismMaterial.clone());
-
-    prism.position.set(
-      (Math.random() - 0.5) * 20,
-      (Math.random() - 0.5) * 10,
-      (Math.random() - 0.5) * 25
-    );
-
-    prism.rotation.set(
-      Math.random() * Math.PI,
-      Math.random() * Math.PI,
-      Math.random() * Math.PI
-    );
-
-    prism.userData = {
-      drift: new THREE.Vector3(
-        (Math.random() - 0.5) * 0.002,
-        (Math.random() - 0.5) * 0.002,
-        (Math.random() - 0.5) * 0.002
-      ),
-      rotationSpeed: new THREE.Vector3(
-        Math.random() * 0.001,
-        Math.random() * 0.001,
-        Math.random() * 0.001
-      )
-    };
-
-    scene.add(prism);
-    prisms.push(prism);
+function createParticles() {
+  particles = [];
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      radius: 3 + Math.random() * 2,
+      phase: Math.random() * Math.PI * 2,
+    });
   }
+}
 
-  // === Animate ===
-  function animate() {
-    requestAnimationFrame(animate);
+function drawParticles(time) {
+  particles.forEach(p => {
+    const pulseRadius = p.radius * (0.9 + 0.1 * Math.sin(time * 0.001 + p.phase));
+    const px = p.x + parallax.x;
+    const py = p.y + parallax.y;
 
-    for (let prism of prisms) {
-      prism.position.add(prism.userData.drift);
-      prism.rotation.x += prism.userData.rotationSpeed.x;
-      prism.rotation.y += prism.userData.rotationSpeed.y;
-      prism.rotation.z += prism.userData.rotationSpeed.z;
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(${PARTICLE_COLOR.r}, ${PARTICLE_COLOR.g}, ${PARTICLE_COLOR.b}, 0.9)`;
+    ctx.arc(px, py, pulseRadius, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
 
-      // Wrap if out of bounds
-      if (prism.position.length() > 30) {
-        prism.position.set(
-          (Math.random() - 0.5) * 20,
-          (Math.random() - 0.5) * 10,
-          -20
-        );
+function drawLines(time) {
+  const maxDist = 140;
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const pA = particles[i];
+      const pB = particles[j];
+      const dx = pA.x - pB.x;
+      const dy = pA.y - pB.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < maxDist) {
+        const baseAlpha = (1 - dist / maxDist) * 0.25;
+        const pulse = 0.6 + 0.4 * Math.sin(time * 0.0003 + i);
+        const alpha = baseAlpha * pulse;
+
+        const lineColor = `rgba(136, 146, 255, ${alpha.toFixed(3)})`;
+
+        const ax = pA.x + parallax.x;
+        const ay = pA.y + parallax.y;
+        const bx = pB.x + parallax.x;
+        const by = pB.y + parallax.y;
+
+        ctx.strokeStyle = lineColor;
+        ctx.lineWidth = 1.4 + 0.4 * pulse;
+        ctx.shadowColor = lineColor;
+        ctx.shadowBlur = 12 * pulse;
+        ctx.beginPath();
+        ctx.moveTo(ax, ay);
+        ctx.lineTo(bx, by);
+        ctx.stroke();
+
+        ctx.shadowBlur = 0;
       }
     }
-
-    renderer.render(scene, camera);
   }
+}
 
-  // === Resize ===
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+function updateParticles() {
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+
+    if (p.x < 0 || p.x > width) p.vx *= -1;
+    if (p.y < 0 || p.y > height) p.vy *= -1;
   });
+}
 
-  animate();
-});
+function animate(time = 0) {
+  // Calculate parallax offset from scroll
+  const maxOffset = 40;
+  const scrollFactor = scrollY / height; // normalized scroll
+  parallax.y = scrollFactor * maxOffset;
+  parallax.x = (scrollFactor - 0.5) * maxOffset * 0.3; // optional slight horizontal drift
+
+  ctx.clearRect(0, 0, width, height);
+  updateParticles();
+  drawLines(time);
+  drawParticles(time);
+  requestAnimationFrame(animate);
+}
+
+createParticles();
+requestAnimationFrame(animate);
