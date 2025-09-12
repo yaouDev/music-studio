@@ -34,7 +34,8 @@
     "title": "Get In Touch",
     "description": "Have a question or want to collaborate? Send a message!",
     "email": "test@test.com",
-    "buttonText": "Send Message"
+    "buttonText": "Send Message",
+    "fallbackText": "Or email us directly at"
   },
   "footerText": "All rights reserved."
 }

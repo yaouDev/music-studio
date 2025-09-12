@@ -1,36 +1,37 @@
 {
-  "theme": {
-    "fonts": {
-      "body": "'Bitcount Grid Double', system-ui",
-      "heading": "'Bitcount Grid Double', system-ui",
-      "baseSize": "18px",
-      "fontWeights": {
-        "body": 500,
-        "heading": 700
-      },
-      "headingSizes": {
-        "h1": "3rem",
-        "h2": "2.5rem",
-        "h3": "2rem"
-      }
+  "colors": {
+    "primary": "#0D0D0D",
+    "primaryLight": "#1A1A1A",
+    "primaryDark": "#000000",
+    "text": "#E0E0E0",
+    "textLight": "#A3A3A3",
+    "background": "#121212",
+    "backgroundDark": "#0A0A0A",
+    "accent": "#E63946",
+    "shadow": "rgba(0, 0, 0, 0.7)",
+    "button-bg": "#E63946",
+    "button-text": "#FFFFFF",
+    "button-bg-hover": "#D62828",
+    "header-bg": "#0D0D0D",
+    "header-text": "#E0E0E0",
+    "footer-bg": "#121212",
+    "footer-text": "#A3A3A3",
+    "muted": "#A3A3A3"
+  },
+  "spacing": {
+    "base": "1.25rem",
+    "large": "2.5rem"
+  },
+  "fonts": {
+    "baseSize": "18px",
+    "fontWeights": {
+      "body": "500",
+      "heading": "700"
     },
-    "colors": {
-      "primary": "#0D0D0D",
-      "primaryLight": "#1A1A1A",
-      "primaryDark": "#000000",
-      "text": "#E0E0E0",
-      "textLight": "#A3A3A3",
-      "background": "#121212",
-      "backgroundDark": "#0A0A0A",
-      "accent": "#E63946",
-      "shadow": "rgba(0, 0, 0, 0.7)",
-      "button-bg": "#E63946",
-      "button-text": "#FFFFFF",
-      "button-bg-hover": "#D62828"
-    },
-    "spacing": {
-      "base": "1.25rem",
-      "large": "2.5rem"
+    "headingSizes": {
+      "h1": "3rem",
+      "h2": "2.5rem",
+      "h3": "2rem"
     }
   }
 }

@@ -1,0 +1,41 @@
+{
+  "siteTitle": "スタジオ・アーテル | ポートフォリオ",
+  "name": "スタジオ・アーテル",
+  "meta": {
+    "description": "私たちの作品とスキルを紹介するクリエイティブポートフォリオ。",
+    "ogTitle": "スタジオ・アーテル ポートフォリオ",
+    "ogDescription": "プロジェクト、スキル、連絡先をご覧ください。",
+    "ogImage": "your-image-url.jpg"
+  },
+  "nav": [
+    { "label": "ポートフォリオ", "section": "portfolio" },
+    { "label": "私たちについて", "section": "about" },
+    { "label": "お問い合わせ", "section": "contact" }
+  ],
+  "showSections": {
+    "hero": true,
+    "about": true,
+    "portfolio": true,
+    "contact": true
+  },
+  "hero": {
+    "title": "スタジオ・アーテル",
+    "description": "創造的な音の世界へようこそ",
+    "buttonText": "作品を見る"
+  },
+  "about": {
+    "title": "私たちについて",
+    "description": "日本を拠点に活動する、クラシック訓練を受けたスウェーデン人作曲家2人組です。"
+  },
+  "portfolio": {
+    "title": "プロジェクト紹介"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "description": "ご質問やコラボのご相談がありましたらご連絡ください。",
+    "email": "test@test.com",
+    "buttonText": "メッセージを送る",
+    "fallbackText": "または次のアドレスに直接ご連絡ください："
+  },
+  "footerText": "全著作権所有"
+}

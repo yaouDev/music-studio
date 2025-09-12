@@ -103,3 +103,7 @@
     z-index: -1;
     display: block;
   }
+
+.bg-theme-header {
+  background-color: var(--color-header-bg);
+}

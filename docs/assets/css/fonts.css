@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Jersey+10&display=swap');
+
+
+:root {
+  --font-body-en: 'Jersey 10', system-ui, sans-serif;
+  --font-heading-en: 'Jersey 10', system-ui, sans-serif;
+  --font-body-jp: 'DotGothic16', sans-serif;
+  --font-heading-jp: 'DotGothic16', sans-serif;
+
+  --font-body: var(--font-body-en);
+  --font-heading: var(--font-heading-en);
+}
