@@ -1,5 +1,13 @@
 [
   {
+    "id": "lorem-ipsum",
+    "title": "test",
+    "description": "test",
+    "media_url": "",
+    "type": "image",
+    "content": "assets/media/content/en/lorem_ipsum.md"
+  },
+  {
     "id": "project-alpha",
     "title": "Project Alpha",
     "description": "A web app built using React and Node.js.",
@@ -32,11 +40,11 @@
     "content": "assets/media/content/en/placeholder.md"
   },
   {
-    "id": "lorem-ipsum",
-    "title": "test",
-    "description": "test",
+    "id": "bird-image",
+    "title": "Bird test",
+    "description": "A bird test",
     "media_url": "",
     "type": "image",
-    "content": "assets/media/content/en/lorem_ipsum.md"
+    "content": "assets/media/content/en/image_test.md"
   }
 ]
