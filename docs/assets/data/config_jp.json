@@ -1,9 +1,9 @@
 {
-  "siteTitle": "スタジオ・アーテル | ポートフォリオ",
-  "name": "スタジオ・アーテル",
+  "siteTitle": "ルーメン・コレクティブ | ポートフォリオ",
+  "name": "ルーメン・コレクティブ",
   "meta": {
     "description": "私たちの作品とスキルを紹介するクリエイティブポートフォリオ。",
-    "ogTitle": "スタジオ・アーテル ポートフォリオ",
+    "ogTitle": "ルーメン・コレクティブ ポートフォリオ",
     "ogDescription": "プロジェクト、スキル、連絡先をご覧ください。",
     "ogImage": "your-image-url.jpg"
   },
@@ -19,7 +19,7 @@
     "contact": true
   },
   "hero": {
-    "title": "スタジオ・アーテル",
+    "title": "ルーメン・コレクティブ",
     "description": "創造的な音の世界へようこそ",
     "buttonText": "作品を見る"
   },

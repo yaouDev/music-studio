@@ -5,7 +5,7 @@
     "description": "A web app built using React and Node.js.",
     "media_url": "https://example.com/image1.jpg",
     "type": "image",
-    "content": "assets/media/content/project-alpha.md"
+    "content": "assets/media/content/en/placeholder.md"
   },
   {
     "id": "project-beta",
@@ -13,7 +13,7 @@
     "description": "A short film made with Blender...",
     "media_url": "https://example.com/video.mp4",
     "type": "video",
-    "content": "assets/media/content/project-beta.md"
+    "content": "assets/media/content/en/placeholder.md"
   },
   {
     "id": "audio-logo",
@@ -21,7 +21,7 @@
     "description": "A sonic identity created for a brand.",
     "media_url": "https://example.com/audio.mp3",
     "type": "audio",
-    "content": "assets/media/content/audio-logo.md"
+    "content": "assets/media/content/en/placeholder.md"
   },
   {
     "id": "bird-test",
@@ -29,6 +29,14 @@
     "description": "A bird test",
     "media_url": "./assets/media/images/bird.jpg",
     "type": "image",
-    "content": "assets/media/content/test.md"
+    "content": "assets/media/content/en/placeholder.md"
+  },
+  {
+    "id": "lorem-ipsum",
+    "title": "test",
+    "description": "test",
+    "media_url": "",
+    "type": "image",
+    "content": "assets/media/content/en/lorem_ipsum.md"
   }
 ]

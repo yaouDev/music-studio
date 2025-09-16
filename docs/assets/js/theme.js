@@ -1,6 +1,6 @@
 (async () => {
   try {
-    const res = await fetch('./theme.json');
+    const res = await fetch('assets/data/theme.json');
     const data = await res.json();
     const root = document.documentElement.style;
 

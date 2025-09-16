@@ -62,23 +62,7 @@
 
   <canvas id="bg"></canvas>
 
-  <!-- Header -->
-  <header class="sticky top-0 z-50 shadow-md bg-theme-primary">
-    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-4">
-        <a href="#" class="text-xl font-bold text-theme-text" id="nav-name">...</a>
-        <div class="lang-toggle space-x-2">
-        <button onclick="setLanguage('en')" class="text-sm underline">EN</button>
-        <button onclick="setLanguage('jp')" class="text-sm underline">JP</button>
-        </div>
-      </div>
-      <div class="space-x-4 hidden md:flex" id="nav-links">
-        <!-- Links injected here -->
-      </div>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
+  <!-- Main content sections -->
   <section id="hero" class="py-16 md:py-24 text-center">
     <div class="container mx-auto px-4">
       <div class="hero-title-wrapper mx-auto inline-block relative">
@@ -93,7 +77,6 @@
     </div>
   </section>
 
-  <!-- Portfolio -->
   <section id="portfolio" class="py-16">
     <div class="container mx-auto px-4">
       <h2 id="portfolio-title" class="text-3xl md:text-4xl font-bold text-center mb-10 text-theme-text">...</h2>
@@ -103,7 +86,6 @@
     </div>
   </section>
 
-  <!-- About -->
   <section id="about" class="py-16 md:py-24 text-center">
     <div class="container mx-auto px-4 max-w-3xl">
       <h2 id="about-title" class="text-3xl md:text-4xl font-bold mb-4 text-theme-text">...</h2>
@@ -111,36 +93,30 @@
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact" class="py-16 md:py-24 bg-theme-background text-center">
     <div class="container mx-auto px-4 max-w-xl">
       <h2 id="contact-title" class="text-3xl md:text-4xl font-bold mb-6 text-theme-text"></h2>
       <p id="contact-description" class="text-lg mb-6 text-theme-muted"></p>
-
       <a 
         id="contact-button"
         href="#"
         class="inline-block py-3 px-8 rounded-lg transition bg-theme-button hover:bg-theme-button-hover font-semibold"
       ></a>
-
       <p id="contact-fallback" class="text-sm mt-4 text-theme-muted"></p>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-6 text-center">
-    <div class="container mx-auto px-4" style="color: var(--color-footer-text); background-color: var(--color-footer-bg);">
-      <p>&copy; 2025 <span id="footer-name">...</span>. <span id="footer-text">All rights reserved.</span></p>
-    </div>
-  </footer>
+  <!-- Scripts -->
+  <script>
+    window.setLanguage = function(lang) {
+      localStorage.setItem('lang', lang);
+      location.reload();
+    };
+  </script>
 
-  <!-- Theme -->
   <script src="assets/js/theme.js"></script>
-
-  <!-- Main -->
-  <script src="assets/js/main.js"></script>
-
-  <!-- Background -->
+  <script src="assets/js/layout.js" type="module"></script>
+  <script src="assets/js/main.js" type="module"></script>
   <script src="assets/js/background.js"></script>
 
 </body>
