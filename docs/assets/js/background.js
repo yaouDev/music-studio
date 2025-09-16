@@ -17,15 +17,25 @@ let SHADOW_COLOR = { r: 80, g: 80, b: 90 };
 
 function resize() {
   width = window.innerWidth;
-  height = window.innerHeight;
+  
+  if (/Mobi|Android/i.test(navigator.userAgent) && window.visualViewport) {
+    height = window.visualViewport.height;
+  } else {
+    height = window.innerHeight;
+  }
+
   canvas.width = width * devicePixelRatio;
   canvas.height = height * devicePixelRatio;
+
   canvas.style.width = width + 'px';
   canvas.style.height = height + 'px';
+
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.scale(devicePixelRatio, devicePixelRatio);
+
   createGrid();
 }
+
 
 window.addEventListener('resize', resize);
 
