@@ -2,8 +2,17 @@
 import { loadLayout } from './layout.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  let lang;
+
+  const userLang = navigator.language || navigator.userLanguage || 'en';
+  if (!localStorage.getItem('lang')) {
+    lang = userLang.startsWith('ja') ? 'jp' : 'en';
+    localStorage.setItem('lang', lang);
+  } else {
+    lang = localStorage.getItem('lang');
+  }
+  
   try {
-    const lang = localStorage.getItem('lang') || 'en';
 
     // Load header/footer layout with nav & language switching
     await loadLayout(lang);
