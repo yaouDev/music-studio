@@ -6,9 +6,9 @@
 */
 
 :root {
-  --font-body-en: 'NewTegomin', sans-serif;
+  --font-body-en: 'New+Tegomin', sans-serif;
   --font-heading-en: 'DotGothic16', sans-serif;
-  --font-body-jp: 'NewTegomin', sans-serif;
+  --font-body-jp: 'New+Tegomin', sans-serif;
   --font-heading-jp: 'DotGothic16', sans-serif;
 
   --font-body: var(--font-body-en);
