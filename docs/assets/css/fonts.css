@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
 
 /* 
 --font-body-en: 'VT323', monospace, sans-serif;
@@ -6,9 +6,9 @@
 */
 
 :root {
-  --font-body-en: 'DotGothic16', sans-serif;
+  --font-body-en: 'NewTegomin', sans-serif;
   --font-heading-en: 'DotGothic16', sans-serif;
-  --font-body-jp: 'DotGothic16', sans-serif;
+  --font-body-jp: 'NewTegomin', sans-serif;
   --font-heading-jp: 'DotGothic16', sans-serif;
 
   --font-body: var(--font-body-en);
