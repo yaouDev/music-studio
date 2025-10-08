@@ -11,7 +11,7 @@ let scrollY = 0;
 let scrollTime = 0;
 
 let BACKGROUND_COLOR = '#0b07f3ff'; // default, overridden by theme
-let METAL_BASE_COLOR = { r: 180, g: 180, b: 200 }; // light metallic gray
+let METAL_BASE_COLOR = { r: 180, g: 0, b: 0 };
 let LIGHT_COLOR = { r: 255, g: 255, b: 255 };
 let SHADOW_COLOR = { r: 80, g: 80, b: 90 };
 
