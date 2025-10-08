@@ -1,9 +1,9 @@
 {
-  "siteTitle": "Studio Zennou | Portfolio",
-  "name": "Studio Zennou",
+  "siteTitle": "Kammaren | Portfolio",
+  "name": "Kammaren Studio",
   "meta": {
     "description": "A creative portfolio showcasing my work and skills.",
-    "ogTitle": "Studio Zennou Portfolio",
+    "ogTitle": "Kammaren Studio Portfolio",
     "ogDescription": "Check out our projects, skills, and contact information.",
     "ogImage": "your-image-url.jpg"
   },
@@ -19,8 +19,8 @@
     "contact": true
   },
   "hero": {
-    "title": "Studio Zennou",
-    "description": "スタジオ前王",
+    "title": "Kammaren",
+    "description": "カッマレン",
     "buttonText": "Our Work"
   },
   "about": {
