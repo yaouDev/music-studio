@@ -6,10 +6,10 @@
 */
 
 :root {
-  --font-body-en: 'New Tegomin', sans-serif;
-  --font-heading-en: 'DotGothic16', sans-serif;
-  --font-body-jp: 'New Tegomin', sans-serif;
-  --font-heading-jp: 'DotGothic16', sans-serif;
+  --font-body-en: '', sans-serif;
+  --font-heading-en: 'test', sans-serif;
+  --font-body-jp: 'test', sans-serif;
+  --font-heading-jp: 'New Tegomin', sans-serif;
 
   --font-body: var(--font-body-en);
   --font-heading: var(--font-heading-en);
