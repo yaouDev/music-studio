@@ -8,20 +8,29 @@
     "background": "#FDFBF8",
     "backgroundDark": "#EBE7E2",
     "accent": "#9F9589",
+    "muted": "#8A857D",
     "shadow": "rgba(159, 149, 137, 0.2)",
+
     "button-bg": "#8A7D70",
     "button-text": "#FDFBF8",
     "button-bg-hover": "#74695D",
+
     "header-bg": "#FDFBF8",
     "header-text": "#3D3A36",
     "footer-bg": "#EBE7E2",
     "footer-text": "#6B6763",
-    "muted": "#8A857D"
+
+    "backgroundMeshBase": "#FDFBF8",
+    "backgroundMeshHighlight": "#F0EAE4",
+    "backgroundMeshShadow": "#8A857D",
+    "backgroundMeshEdge": "#8A7D70"
   },
+
   "spacing": {
     "base": "1.25rem",
     "large": "2.5rem"
   },
+
   "fonts": {
     "baseSize": "16px",
     "fontWeights": {

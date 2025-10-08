@@ -33,7 +33,7 @@
   "contact": {
     "title": "お問い合わせ",
     "description": "ご質問やコラボのご相談がありましたらご連絡ください。",
-    "email": "test@test.com",
+    "email": "contact@kammaren.studio",
     "buttonText": "メッセージを送る",
     "fallbackText": "または次のアドレスに直接ご連絡ください："
   },
