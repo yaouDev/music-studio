@@ -1,9 +1,9 @@
 {
-  "siteTitle": "Lumen Collective | Portfolio",
-  "name": "Lumen Collective",
+  "siteTitle": "Studio Zennou | Portfolio",
+  "name": "Studio Zennou",
   "meta": {
     "description": "A creative portfolio showcasing my work and skills.",
-    "ogTitle": "Lumen Collective Portfolio",
+    "ogTitle": "Studio Zennou Portfolio",
     "ogDescription": "Check out our projects, skills, and contact information.",
     "ogImage": "your-image-url.jpg"
   },
@@ -19,8 +19,8 @@
     "contact": true
   },
   "hero": {
-    "title": "Lumen Collective",
-    "description": "ルーメン・コレクティブ",
+    "title": "Studio Zennou",
+    "description": "スタジオ前王",
     "buttonText": "Our Work"
   },
   "about": {

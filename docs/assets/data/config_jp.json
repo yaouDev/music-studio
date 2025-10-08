@@ -1,9 +1,9 @@
 {
-  "siteTitle": "ルーメン・コレクティブ | ポートフォリオ",
-  "name": "ルーメン・コレクティブ",
+  "siteTitle": "スタジオ前王 | ポートフォリオ",
+  "name": "スタジオ前王",
   "meta": {
     "description": "私たちの作品とスキルを紹介するクリエイティブポートフォリオ。",
-    "ogTitle": "ルーメン・コレクティブ ポートフォリオ",
+    "ogTitle": "スタジオ前王 ポートフォリオ",
     "ogDescription": "プロジェクト、スキル、連絡先をご覧ください。",
     "ogImage": "your-image-url.jpg"
   },
@@ -19,7 +19,7 @@
     "contact": true
   },
   "hero": {
-    "title": "ルーメン・コレクティブ",
+    "title": "スタジオ前王",
     "description": "創造的な音の世界へようこそ",
     "buttonText": "作品を見る"
   },
