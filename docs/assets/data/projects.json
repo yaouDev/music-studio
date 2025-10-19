@@ -54,5 +54,13 @@
     "media_url": "https://www.youtube.com/watch?v=eDqga8a7KgY&list=RDeDqga8a7KgY&start_radio=1",
     "type": "video",
     "content": "assets/media/content/en/a_test.md"
+  },
+   {
+    "id": "arvid-test2",
+    "title": "A test2",
+    "description": "Arvids egna test",
+    "media_url": "https://www.youtube.com/embed/JPkTnHfGMXI",
+    "type": "video",
+    "content": ""
   }
 ]
