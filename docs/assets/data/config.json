@@ -2,7 +2,7 @@
   "siteTitle": "Kammaren | Portfolio",
   "name": "Kammaren Studio",
   "meta": {
-    "description": "A creative portfolio showcasing my work and skills.",
+    "description": "Site currently being built, please chack back later!.",
     "ogTitle": "Kammaren Studio Portfolio",
     "ogDescription": "Check out our projects, skills, and contact information.",
     "ogImage": "./media/meta/site_icon.png"
@@ -25,7 +25,10 @@
   },
   "about": {
     "title": "About Us",
-    "description": "We're two classically trained Swedish composers who make music and audio as art and for media, based in Japan"
+    "description": "Kammaren, meaning “chamber” in Swedish, is a small Japan-based music production studio.
+  We seek to create music that moves beyond a supporting role, that instead works in synergy with other arts and media to form experiences greater than the sum of their parts.  
+  Intrinsic to our core is a dedication to precision and intent, grounded in tradition and experience while continually seeking to innovate within the contemporary field.  
+  Shaped by training in both Sweden and Japan, we bring together Nordic clarity and Japanese transience in a balanced, delicate fusion unique to Kammaren."
   },
   "portfolio": {
     "title": "Our Projects"
