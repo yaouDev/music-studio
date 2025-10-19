@@ -97,6 +97,9 @@ function getMediaHtml(project) {
         </audio>
       </div>
     `;
+  } else if (project.type === 'youtube') {
+    return `
+      <iframe width="560" height="315" src="${project.media_url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
   } else {
     // default to image
     return `<img src="${project.media_url}" alt="${project.title}" class="w-full rounded-lg mb-6" />`;

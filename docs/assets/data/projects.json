@@ -52,7 +52,7 @@
     "title": "A test",
     "description": "A test to demonstrate adding projects",
     "media_url": "https://www.youtube.com/200ebd1c-46d0-4cdb-89b0-6480dfb128eb",
-    "type": "video",
+    "type": "youtube",
     "content": "assets/media/content/en/a_test.md"
   },
    {
