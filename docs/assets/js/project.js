@@ -75,6 +75,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
+// Helper: Convert standard YouTube URLs to embed format
+function getYouTubeEmbedUrl(url) {
+  const standardUrl = /youtube\.com\/watch\?v=([^&]+)/;
+  const shortUrl = /youtu\.be\/([^?&]+)/;
+
+  let match = url.match(standardUrl) || url.match(shortUrl);
+  if (match && match[1]) {
+    return `https://www.youtube.com/embed/${match[1]}`;
+  }
+
+  // Fallback to raw URL (may not work as embed)
+  return url;
+}
+
 // Helper: Return media HTML based on type
 function getMediaHtml(project) {
   if (!project.media_url) return '';
@@ -98,13 +112,21 @@ function getMediaHtml(project) {
       </div>
     `;
   } else if (project.type === 'youtube') {
+    const embedUrl = getYouTubeEmbedUrl(project.media_url);
     return `
-      <iframe width="560" height="315" src="${project.media_url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+      <div class="aspect-video w-full rounded-lg overflow-hidden mb-6">
+        <iframe class="w-full h-full" src="${embedUrl}" title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+      </div>
+    `;
   } else {
     // default to image
     return `<img src="${project.media_url}" alt="${project.title}" class="w-full rounded-lg mb-6" />`;
   }
 }
+
 
 // Apply font theme based on language
 function applyFontTheme(lang) {
