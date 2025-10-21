@@ -1,5 +1,7 @@
 // assets/js/main.js
 import { loadLayout } from './layout.js';
+import { marked } from 'https://esm.sh/marked';
+
 
 document.addEventListener('DOMContentLoaded', async () => {
   let lang;
@@ -53,9 +55,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // About Section
-    toggleSection('about', config.showSections.about, () => {
-      document.getElementById('about-title').textContent = config.about.title || '';
-      document.getElementById('about-description').textContent = config.about.description || '';
+    toggleSection('about', config.showSections.about, async () => {
+      const aboutTitle = config.about.title || 'About';
+    
+      // Choose the appropriate markdown file based on language
+      const mdPath = lang === 'jp'
+        ? 'assets/media/meta/about_jp.md'
+        : 'assets/media/meta/about.md';
+    
+      try {
+        const res = await fetch(mdPath);
+        if (!res.ok) throw new Error(`Failed to load ${mdPath}`);
+        const markdown = await res.text();
+        const html = marked.parse(markdown);
+      
+        document.getElementById('about-title').textContent = aboutTitle;
+        document.getElementById('about-description').innerHTML = html;
+      
+      } catch (err) {
+        console.error('Error loading about markdown:', err);
+        document.getElementById('about-title').textContent = aboutTitle;
+        document.getElementById('about-description').innerHTML = '<p>About section could not be loaded.</p>';
+      }
     });
 
     // Portfolio Section

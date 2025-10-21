@@ -24,6 +24,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/theme.css" />
   <link rel="stylesheet" href="assets/css/theme-overrides.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css">
 
   <!-- Three.js -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
@@ -56,6 +57,24 @@
     header, footer {
       background-color: var(--color-header-bg);
       color: var(--color-header-text);
+    }
+    .markdown-body {
+    background: transparent !important;
+    font-family: var(--font-body, sans-serif) !important;
+    color: inherit;
+    padding: 0;
+    box-shadow: none;
+    }
+    .markdown-body h1,
+    .markdown-body h2,
+    .markdown-body h3,
+    .markdown-body h4,
+    .markdown-body h5,
+    .markdown-body h6,
+    .markdown-body p,
+    .markdown-body li {
+      color: inherit;
+      font-family: inherit;
     }
   </style>
 </head>
@@ -90,7 +109,7 @@
   <section id="about" class="py-16 md:py-24 text-center">
     <div class="container mx-auto px-4 max-w-3xl">
       <h2 id="about-title" class="text-3xl md:text-4xl font-bold mb-4 text-theme-text">...</h2>
-      <p id="about-description" class="text-base md:text-lg leading-relaxed text-theme-muted">...</p>
+      <div id="about-description" class="markdown-body"></div>
     </div>
   </section>
 
