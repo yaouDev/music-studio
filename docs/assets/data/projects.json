@@ -51,7 +51,7 @@
     "id": "arvid-test",
     "title": "A test",
     "description": "A test to demonstrate adding projects",
-    "media_url": "https://www.youtube.com/embed/eDqga8a7KgY?si=pvfZYCdRg5ZRCZLl",
+    "media_url": "https://www.youtube.com/watch?v=eDqga8a7KgY",
     "type": "youtube",
     "content": "assets/media/content/en/a_test.md"
   },

@@ -111,6 +111,19 @@ function applyFontTheme(lang) {
   }
 }
 
+function getYouTubeEmbedUrl(url) {
+    const standardUrl = /youtube\.com\/watch\?v=([^&]+)/;
+    const shortUrl = /youtu\.be\/([^?&]+)/;
+
+    let match = url.match(standardUrl) || url.match(shortUrl);
+    if (match && match[1]) {
+      return `https://www.youtube.com/embed/${match[1]}`;
+    }
+
+    // Fallback to raw URL if unable to parse
+    return url;
+  }
+
 function createProjectCard(project) {
   let mediaHtml = '';
   if (project.type === 'video') {
@@ -130,8 +143,14 @@ function createProjectCard(project) {
         </audio>
       </div>`;
   } else if (project.type === 'youtube') {
-    return mediaHtml = `
-      <iframe width="394.67" height="222" src="${project.media_url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+    const embedUrl = getYouTubeEmbedUrl(project.media_url);
+    mediaHtml = `
+      <div class="aspect-video w-full">
+        <iframe class="w-full h-full rounded-t-xl" src="${embedUrl}" title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+      </div>`;
   } else {
     mediaHtml = `<img src="${project.media_url}" alt="${project.title}" class="w-full rounded-t-xl object-cover" />`;
   }
@@ -146,6 +165,7 @@ function createProjectCard(project) {
     </a>
   `;
 }
+
 
 function toggleSection(id, show, callback) {
   const section = document.getElementById(id);
