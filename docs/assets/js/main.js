@@ -47,7 +47,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Hero Section
     toggleSection('hero', config.showSections.hero, () => {
-      document.getElementById('hero-title').textContent = config.hero.title || '';
+      const heroTitleEl = document.getElementById('hero-title');
+      heroTitleEl.innerHTML = ''; // Clear first
+
+      if (config.hero.logo) {
+        const img = document.createElement('img');
+        img.src = config.hero.logo;
+        img.alt = config.hero.title || 'Site Logo';
+        img.className = 'mx-auto max-h-32'; // Adjust size as needed
+        img.onerror = () => {
+          // If image fails, fallback to text
+          heroTitleEl.textContent = config.hero.title || '';
+        };
+        heroTitleEl.appendChild(img);
+      } else {
+        heroTitleEl.textContent = config.hero.title || '';
+      }
+
       document.getElementById('hero-description').textContent = config.hero.description || '';
       const heroBtn = document.getElementById('hero-button');
       heroBtn.textContent = config.hero.buttonText || '';

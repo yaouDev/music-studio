@@ -5,7 +5,7 @@
     "description": "Site currently being built, please chack back later!.",
     "ogTitle": "Kammaren Studio Portfolio",
     "ogDescription": "Check out our projects, skills, and contact information.",
-    "ogImage": "./media/meta/site_icon.png"
+    "ogImage": "assets/media/meta/ogImage.png"
   },
   "nav": [
     { "label": "Portfolio", "section": "portfolio" },
@@ -21,7 +21,8 @@
   "hero": {
     "title": "Kammaren",
     "description": "カッマレン",
-    "buttonText": "Our Work"
+    "buttonText": "Our Work",
+    "logo": "assets/media/meta/logo.svg"
   },
   "about": {
     "title": "About Us"

@@ -5,11 +5,11 @@
     "description": "私たちの作品とスキルを紹介するクリエイティブポートフォリオ。",
     "ogTitle": "スタジオ前王 ポートフォリオ",
     "ogDescription": "プロジェクト、スキル、連絡先をご覧ください。",
-    "ogImage": "your-image-url.jpg"
+    "ogImage": "assets/media/meta/ogImage.png"
   },
   "nav": [
     { "label": "ポートフォリオ", "section": "portfolio" },
-    { "label": "私たちについて", "section": "about" },
+    { "label": "カッマレンとは", "section": "about" },
     { "label": "お問い合わせ", "section": "contact" }
   ],
   "showSections": {
@@ -21,7 +21,8 @@
   "hero": {
     "title": "カッマレン",
     "description": "創造的な音の世界へようこそ",
-    "buttonText": "作品を見る"
+    "buttonText": "作品を見る",
+    "logo": "assets/media/meta/logo.svg"
   },
   "about": {
     "title": "カッマレンとは"

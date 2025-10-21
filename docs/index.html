@@ -13,6 +13,9 @@
   <!-- Can I do this from config? -->
   <title id="site-title">Kammaren Studio</title>
 
+  <!-- Favicon -->
+  <link rel="icon" href="assets/media/meta/favicon.png" type="image/png" />
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -88,7 +91,9 @@
       <div class="hero-title-wrapper mx-auto inline-block relative">
         <div class="diamond-bg"></div>
         <div class="sunbeam-glow"></div>
-        <h1 id="hero-title" class="text-4xl md:text-6xl font-extrabold mb-4 text-theme-text">...</h1>
+        <div id="hero-title" class="text-4xl md:text-6xl font-extrabold mb-4 text-theme-text">
+          <!-- JS will inject either logo image or fallback text here -->
+        </div>
       </div>
       <p id="hero-description" class="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-theme-muted">...</p>
       <a href="#portfolio" id="hero-button" class="inline-block py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 bg-theme-button hover:bg-theme-button-hover font-semibold">
