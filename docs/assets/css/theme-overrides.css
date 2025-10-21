@@ -1,11 +1,9 @@
-/* Ensure hero text is on top of diamond + sunbeam */
 #hero-title,
 #hero-description,
 #hero-button {
   position: relative;
   z-index: 2;
 }
-
 
 .hero-title-wrapper {
   position: relative;
@@ -15,63 +13,31 @@
   min-width: 280px;
 }
 
-/* The realistic sunbeam glow behind the diamond and text */
-.sunbeam-glow {
+.hero-ambient {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 400px;
-  height: 400px;
-  pointer-events: none;
+  width: 600px;
+  height: 600px;
   transform: translate(-50%, -50%);
-  z-index: 0;
   border-radius: 50%;
-
-  background:
-    radial-gradient(circle at center, rgba(57, 146, 230, 0.5) 0%, transparent 70%),
-    radial-gradient(circle at center, rgba(57, 103, 230, 0.15) 0%, transparent 100%),
-    repeating-conic-gradient(
-      from 0deg,
-      rgba(230, 57, 70, 0.12) 0deg 4deg,
-      transparent 4deg 8deg
-    );
-
-  filter: blur(40px) brightness(1.1);
-  animation: subtlePulse 2.5s ease-in-out infinite, slowRotate 30s linear infinite;
-}
-
-.diamond-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 240px;
-  height: 240px;
-  background: radial-gradient(
-    circle at center,
-    var(--color-primary) 65%,
-    rgba(var(--color-primaryRGB), 0.1) 100%
+  background: conic-gradient(
+    from 0deg,
+    #d4cbc0 0deg 60deg,
+    #a89f92 60deg 120deg,
+    #8a857d 120deg 180deg,
+    #f0eae4 180deg 240deg,
+    #d4cbc0 240deg 300deg,
+    #a89f92 300deg 360deg
   );
-  transform: translate(-50%, -50%) rotate(45deg);
-  border-radius: 16px;
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.4),
-    inset 0 0 20px rgba(255, 255, 255, 0.6);
-  filter: blur(1.2px);
-  opacity: 0.75;
-  z-index: 0;
+  filter: blur(100px);
+  animation: rotate360 30s linear infinite;
   pointer-events: none;
+  z-index: 0;
+  opacity: 1;
 }
 
-@keyframes subtlePulse {
-  0%, 100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes slowRotate {
+@keyframes rotate360 {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
   }
@@ -80,28 +46,6 @@
   }
 }
 
-/* Responsive sizes */
-@media (min-width: 768px) {
-  .sunbeam-glow {
-    width: 500px;
-    height: 500px;
-  }
-  .diamond-bg {
-    width: 260px;
-    height: 260px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .sunbeam-glow {
-    width: 600px;
-    height: 600px;
-  }
-  .diamond-bg {
-    width: 320px;
-    height: 320px;
-  }
-}
 
 #hero-button {
   display: none;
@@ -133,11 +77,9 @@
 #hero-title {
   position: relative;
   font-family: var(--font-heading);
-  /* Gradient fill for metallic look */
   background: linear-gradient(120deg, var(--color-accent), var(--color-primaryDark), var(--color-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* Shadow layers for depth */
   text-shadow:
     2px 2px 4px rgba(0, 0, 0, 0.2),
     4px 4px 8px rgba(0, 0, 0, 0.15);

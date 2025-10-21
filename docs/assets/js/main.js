@@ -127,6 +127,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         </a>`;
     });
 
+    renderSocialLinks(config.socialLinks);
+
   } catch (error) {
     console.error('Error loading main.js:', error);
     document.body.innerHTML = `
@@ -136,6 +138,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     `;
   }
 });
+
+// Render Social Links
+function renderSocialLinks(links) {
+  const container = document.getElementById('social-links');
+  if (!container || !Array.isArray(links)) return;
+
+  container.innerHTML = ''; // Clear any existing content
+
+  links.forEach(link => {
+    const a = document.createElement('a');
+    a.href = link.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.title = link.name;
+    a.className = 'transition-opacity hover:opacity-80';
+
+    const img = document.createElement('img');
+    img.src = link.icon;
+    img.alt = link.name;
+    img.className = 'h-6 w-6';
+
+    a.appendChild(img);
+    container.appendChild(a);
+  });
+}
+
 
 function applyFontTheme(lang) {
   const root = document.documentElement.style;

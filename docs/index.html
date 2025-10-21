@@ -10,11 +10,12 @@
   <meta property="og:image" content="" id="og-image" />
   <meta name="theme-color" content="#6366F1" />
 
-  <!-- Can I do this from config? -->
   <title id="site-title">Kammaren Studio</title>
 
   <!-- Favicon -->
   <link rel="icon" href="assets/media/meta/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/media/meta/favicon.png" />
+
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -89,8 +90,8 @@
   <section id="hero" class="py-16 md:py-24 text-center">
     <div class="container mx-auto px-4">
       <div class="hero-title-wrapper mx-auto inline-block relative">
-        <div class="diamond-bg"></div>
-        <div class="sunbeam-glow"></div>
+        <div class="hero-ambient"></div>
+        <div class="hero-slab"></div>
         <div id="hero-title" class="text-4xl md:text-6xl font-extrabold mb-4 text-theme-text">
           <!-- JS will inject either logo image or fallback text here -->
         </div>
@@ -128,6 +129,7 @@
         class="inline-block py-3 px-8 rounded-lg transition bg-theme-button hover:bg-theme-button-hover font-semibold"
       ></a>
       <p id="contact-fallback" class="text-sm mt-4 text-theme-muted"></p>
+      <div id="social-links" class="flex justify-center gap-4 mt-6"></div>
     </div>
   </section>
 

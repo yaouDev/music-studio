@@ -37,5 +37,17 @@
     "buttonText": "メッセージを送る",
     "fallbackText": "または次のアドレスに直接ご連絡ください："
   },
+  "socialLinks": [
+    {
+      "name": "LinkedIn",
+      "url": "kammaren.studio",
+      "icon": "assets/media/meta/social/linkedin.png"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://instagram.com/kammaren.studio",
+      "icon": "assets/media/meta/social/instagram.png"
+    }
+  ],
   "footerText": "全著作権所有"
 }

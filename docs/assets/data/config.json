@@ -37,5 +37,17 @@
     "buttonText": "Send Message",
     "fallbackText": "Or email us directly at"
   },
+  "socialLinks": [
+    {
+      "name": "LinkedIn",
+      "url": "kammaren.studio",
+      "icon": "assets/media/meta/social/linkedin.png"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://instagram.com/kammaren.studio",
+      "icon": "assets/media/meta/social/instagram.png"
+    }
+  ],
   "footerText": "All rights reserved."
 }
