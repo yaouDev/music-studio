@@ -1,29 +1,5 @@
 [
   {
-    "id": "project-alpha",
-    "title": "プロジェクトアルファ",
-    "description": "ReactとNode.jsを使って作られたウェブアプリ。",
-    "media_url": "https://example.com/image1.jpg",
-    "type": "image",
-    "content": "assets/media/content/jp/placeholder_jp.md"
-  },
-  {
-    "id": "project-beta",
-    "title": "プロジェクトベータ",
-    "description": "Blenderで作られた短編映画。",
-    "media_url": "https://example.com/video.mp4",
-    "type": "video",
-    "content": "assets/media/content/jp/placeholder_jp.md"
-  },
-  {
-    "id": "audio-logo",
-    "title": "オーディオロゴ",
-    "description": "ブランドのために作られた音のアイデンティティ。",
-    "media_url": "https://example.com/audio.mp3",
-    "type": "audio",
-    "content": "assets/media/content/jp/placeholder_jp.md"
-  },
-  {
     "id": "lorem-ipsum",
     "title": "test",
     "description": "test",

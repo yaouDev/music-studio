@@ -41,12 +41,12 @@
     {
       "name": "LinkedIn",
       "url": "kammaren.studio",
-      "icon": "assets/media/meta/social/linkedin.png"
+      "icon": "assets/media/meta/social/linkedin.svg"
     },
     {
       "name": "Instagram",
       "url": "https://instagram.com/kammaren.studio",
-      "icon": "assets/media/meta/social/instagram.png"
+      "icon": "assets/media/meta/social/instagram.svg"
     }
   ],
   "footerText": "All rights reserved."
