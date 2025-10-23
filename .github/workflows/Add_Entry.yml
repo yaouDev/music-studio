@@ -1,0 +1,107 @@
+name: Add Project Entry
+
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: 'Project ID (match with japanese version)'
+        required: true
+        type: string
+      title:
+        description: 'Project title'
+        required: true
+        type: string
+      description:
+        description: 'Project description'
+        required: true
+        type: string
+      media_url:
+        description: 'Media URL'
+        required: false
+        type: string
+        default: ''
+      type:
+        description: 'Type of project (e.g., image)'
+        required: true
+        type: string
+      content_filename:
+        description: 'Markdown filename (without path)'
+        required: true
+        type: string
+      is_japanese:
+        description: 'Is the content Japanese? (true/false)'
+        required: true
+        type: boolean
+
+jobs:
+  add_project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup jq (JSON processor)
+        run: sudo apt-get install -y jq
+
+      - name: Read inputs and update projects.json
+        id: update_json
+        run: |
+          # Variables from inputs
+          ID="${{ github.event.inputs.id }}"
+          TITLE="${{ github.event.inputs.title }}"
+          DESC="${{ github.event.inputs.description }}"
+          MEDIA_URL="${{ github.event.inputs.media_url }}"
+          TYPE="${{ github.event.inputs.type }}"
+          CONTENT_FILENAME="${{ github.event.inputs.content_filename }}"
+          IS_JP="${{ github.event.inputs.is_japanese }}"
+
+          # Determine content path prefix
+          if [ "$IS_JP" = "true" ]; then
+            PREFIX="assets/media/content/jp/"
+          else
+            PREFIX="assets/media/content/en/"
+          fi
+
+          CONTENT_PATH="${PREFIX}${CONTENT_FILENAME}"
+
+          # Path to the projects.json
+          FILE="assets/data/projects.json"
+
+          # Check if file exists
+          if [ ! -f "$FILE" ]; then
+            echo "[]" > "$FILE"
+          fi
+
+          # Create new project entry JSON object
+          NEW_PROJECT=$(jq -n \
+            --arg id "$ID" \
+            --arg title "$TITLE" \
+            --arg description "$DESC" \
+            --arg media_url "$MEDIA_URL" \
+            --arg type "$TYPE" \
+            --arg content "$CONTENT_PATH" \
+            '{
+              id: $id,
+              title: $title,
+              description: $description,
+              media_url: $media_url,
+              type: $type,
+              content: $content
+            }')
+
+          # Append the new project to the existing array
+          UPDATED_JSON=$(jq ". += [$NEW_PROJECT]" "$FILE")
+
+          # Write updated JSON back
+          echo "$UPDATED_JSON" > "$FILE"
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/data/projects.json
+          git commit -m "Add project ${{ github.event.inputs.id }}"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
