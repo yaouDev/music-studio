@@ -1,0 +1,10 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title>YouTube icon for kammaren.studio</title>
+  <defs>
+    <mask id="playCutout" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+      <rect width="48" height="48" fill="white"></rect>
+      <path d="M20 16L32 24L20 32V16Z" fill="black"></path>
+    </mask>
+  </defs>
+  <rect width="48" height="48" rx="8" fill="#D8CAB8" mask="url(#playCutout)"></rect>
+</svg>

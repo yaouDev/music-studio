@@ -47,6 +47,11 @@
       "name": "Instagram",
       "url": "https://instagram.com/kammaren.studio",
       "icon": "assets/media/meta/social/instagram.svg"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://instagram.com/kammaren.studio",
+      "icon": "assets/media/meta/social/youtube.svg"
     }
   ],
   "footerText": "All rights reserved."
