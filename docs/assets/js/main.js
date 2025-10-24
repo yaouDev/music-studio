@@ -1,7 +1,5 @@
-// assets/js/main.js
 import { loadLayout } from './layout.js';
 import { marked } from 'https://esm.sh/marked';
-
 
 document.addEventListener('DOMContentLoaded', async () => {
   let lang;
@@ -13,9 +11,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   } else {
     lang = localStorage.getItem('lang');
   }
-  
-  try {
 
+  try {
     // Load header/footer layout with nav & language switching
     await loadLayout(lang);
 
@@ -35,6 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const config = await configRes.json();
     const projects = await projectsRes.json();
 
+    // Apply font theme based on language
     applyFontTheme(lang);
 
     // Update meta tags & page title from config
@@ -129,6 +127,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     renderSocialLinks(config.socialLinks);
 
+    // Team Section
+    toggleSection('team', config.showSections.team, () => {
+    const teamTitleElement = document.getElementById('team-title');
+    teamTitleElement.textContent = config.team.title || 'Meet the Team';
+    loadTeamMembers(lang);
+     });
+
   } catch (error) {
     console.error('Error loading main.js:', error);
     document.body.innerHTML = `
@@ -138,6 +143,44 @@ document.addEventListener('DOMContentLoaded', async () => {
     `;
   }
 });
+
+
+async function loadTeamMembers(lang) {
+  try {
+    const teamFile = lang === 'jp' ? 'assets/data/team_jp.json' : 'assets/data/team.json';
+    const response = await fetch(teamFile);
+
+    if (!response.ok) throw new Error(`Failed to load ${teamFile}`);
+
+    const teamMembers = await response.json();
+    const teamContainer = document.getElementById('team-container');
+    
+    teamContainer.innerHTML = '';
+
+    // Add team members to the container
+    teamMembers.forEach(member => {
+      const memberDiv = document.createElement('div');
+      memberDiv.classList.add('flex-shrink-0', 'w-64', 'text-center');
+
+      memberDiv.innerHTML = `
+        <div class="relative mb-4">
+          <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-theme-primary">
+            <img src="${member.image}" alt="${member.name}" class="w-full h-full object-cover" />
+          </div>
+        </div>
+        <h3 class="text-xl font-semibold text-theme-text">${member.name}</h3>
+        <p class="text-theme-muted mt-2">${member.description}</p>
+      `;
+
+      teamContainer.appendChild(memberDiv);
+    });
+
+  } catch (error) {
+    console.error('Error loading team members:', error);
+  }
+}
+
+
 
 // Render Social Links
 function renderSocialLinks(links) {
@@ -163,7 +206,6 @@ function renderSocialLinks(links) {
     container.appendChild(a);
   });
 }
-
 
 function applyFontTheme(lang) {
   const root = document.documentElement.style;

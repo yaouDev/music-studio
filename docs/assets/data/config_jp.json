@@ -16,7 +16,8 @@
     "hero": true,
     "about": true,
     "portfolio": true,
-    "contact": true
+    "contact": true,
+    "team": true
   },
   "hero": {
     "title": "カッマレン",
@@ -29,6 +30,9 @@
   },
   "portfolio": {
     "title": "プロジェクト紹介"
+  },
+  "team": {
+    "title": "作曲家"
   },
   "contact": {
     "title": "お問い合わせ",

@@ -16,7 +16,8 @@
     "hero": true,
     "about": true,
     "portfolio": true,
-    "contact": true
+    "contact": true,
+    "team": true
   },
   "hero": {
     "title": "Kammaren",
@@ -29,6 +30,9 @@
   },
   "portfolio": {
     "title": "Our Projects"
+  },
+  "team": {
+    "title": "Meet the Team"
   },
   "contact": {
     "title": "Get In Touch",
