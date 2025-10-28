@@ -1,12 +1,12 @@
 [
   {
-    "name": "John Japanese",
-    "description": "John is a passionate developer with expertise in web technologies.",
+    "name": "オルソン・アービッド",
+    "description": "情報なし",
     "image": "assets/media/team/john.png"
   },
   {
-    "name": "Jane Smith",
-    "description": "Jane is a creative designer who loves bringing concepts to life.",
+    "name": "ヤンソン・オーガスト",
+    "description": "情報なし",
     "image": "assets/media/team/jane.jpg"
   }
 ]

@@ -1,37 +1,12 @@
 [
   {
-    "name": "John Doe",
-    "description": "John is a passionate developer with expertise in web technologies.",
+    "name": "Arvid Olson",
+    "description": "TBD",
     "image": "assets/media/team/john.png"
   },
   {
-    "name": "Jane Smith",
-    "description": "Jane is a creative designer who loves bringing concepts to life.",
-    "image": "assets/media/team/jane.jpg"
-  },
-  {
-    "name": "Jane Smith",
-    "description": "Jane is a creative designer who loves bringing concepts to life.",
-    "image": "assets/media/team/jane.jpg"
-  },
-  {
-    "name": "Jane Smith",
-    "description": "Jane is a creative designer who loves bringing concepts to life.",
-    "image": "assets/media/team/jane.jpg"
-  },
-  {
-    "name": "Jane Smith",
-    "description": "Jane is a creative designer who loves bringing concepts to life.",
-    "image": "assets/media/team/jane.jpg"
-  },
-  {
-    "name": "Jane Smith",
-    "description": "Jane is a creative designer who loves bringing concepts to life.",
-    "image": "assets/media/team/jane.jpg"
-  },
-  {
-    "name": "Jane Smith",
-    "description": "Jane is a creative designer who loves bringing concepts to life.",
+    "name": "August Jansson",
+    "description": "TBD",
     "image": "assets/media/team/jane.jpg"
   }
 ]
